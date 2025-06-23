@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+media/
+staticfiles/
+
+# Env / virtualenv
+env/
+venv/
+ENV/
+.venv/
+.ENV/
+
+# IDEs
+.vscode/
+.idea/
+
+# Mac/Linux/Windows system files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+coverage.xml
+*.cover
+
+# Migrations (opcional si no quieres subirlas)
+# **Úsalas con cuidado**
+# proyecto_ips_app/migrations/
+
+# Testing / pytest
+.pytest_cache/
+nosetests.xml
+test-output/
+
+# MyPy / Pylint / other tools
+.mypy_cache/
+.pytype/
+pylint.log
