@@ -90,6 +90,9 @@ urlpatterns = [
     path('lugar_atencion/eliminar/<int:pk>/', EliminarLugarAtencionView.as_view(), name='eliminar_lugar_atencion'),
     #endregion 
 
+    #region Ciudades
+    path('ajax/ciudades/', cargar_ciudades, name='ajax_cargar_ciudades'),
+    #endregion
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

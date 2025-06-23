@@ -9,15 +9,51 @@
 {% block content %}
 
     <h1>Crear Lugar de Atención</h1>
+
     {% if messages %}
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
     {% endif %}
-    
+
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-    <button>Guardar Lugar de Atención</button>
+
+        <label for="id_nombre_lugar">Nombre del Lugar:</label><br>
+        {{ form.nombre_lugar }}<br><br>
+
+        <label for="id_direccion_lugar">Dirección:</label><br>
+        {{ form.direccion_lugar }}<br><br>
+
+        <label for="id_departamento">Departamento:</label><br>
+        {{ form.departamento }}<br><br>
+
+        <label for="id_ciudad">Ciudad:</label><br>
+        {{ form.ciudad }}<br><br>
+
+        <button type="submit">Guardar Lugar de Atención</button>
+    </form>
+
+    <script>
+        document.getElementById('id_departamento').addEventListener('change', function () {
+            const departamentoId = this.value;
+            const url = "{% url 'ajax_cargar_ciudades' %}?departamento_id=" + departamentoId;
+            const ciudadSelect = document.getElementById('id_ciudad');
+
+            ciudadSelect.innerHTML = '<option value="">Cargando...</option>';
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    ciudadSelect.innerHTML = '<option value="">Seleccione una ciudad</option>';
+                    data.forEach(ciudad => {
+                        const option = document.createElement('option');
+                        option.value = ciudad.codigo_municipio;
+                        option.textContent = ciudad.nombre_ciudad;
+                        ciudadSelect.appendChild(option);
+                    });
+                });
+        });
+    </script>
     
-{% endblock %}     
+{% endblock %}

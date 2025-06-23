@@ -41,7 +41,19 @@ class UsuarioFormulario(forms.ModelForm):
                 if imagen.size > 102400:
                     raise ValidationError('El tamaño máximo del archivo es 100 KB')
             return imagen
+        
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['ciudad'].queryset = Ciudad.objects.none()
 
+            if 'departamento' in self.data:
+                try:
+                    departamento_id = self.data.get('departamento')
+                    self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento_id=departamento_id)
+                except:
+                    pass
+            elif self.instance.pk and self.instance.departamento:
+                self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento=self.instance.departamento)
 
 class PacienteFormulario(forms.ModelForm):
     class Meta:
@@ -55,6 +67,7 @@ class PacienteFormulario(forms.ModelForm):
             'tipo_doc',
             'documento',
             'genero',
+            'departamento',
             'ciudad',
             'fecha_nacimiento',
             'direccion',
@@ -71,6 +84,18 @@ class PacienteFormulario(forms.ModelForm):
             'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
             'imagen':forms.FileInput()
         }
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['ciudad'].queryset = Ciudad.objects.none()
+
+            if 'departamento' in self.data:
+                try:
+                    departamento_id = self.data.get('departamento')
+                    self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento_id=departamento_id)
+                except:
+                    pass
+            elif self.instance.pk and self.instance.departamento:
+                self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento=self.instance.departamento)
         
 
 class MedicoFormulario(forms.ModelForm):
@@ -85,6 +110,7 @@ class MedicoFormulario(forms.ModelForm):
             'tipo_doc',
             'documento',
             'genero',
+            'departamento',
             'ciudad',
             'fecha_nacimiento',
             'direccion',
@@ -99,6 +125,18 @@ class MedicoFormulario(forms.ModelForm):
             'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
             'imagen':forms.FileInput()
         }
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['ciudad'].queryset = Ciudad.objects.none()
+
+            if 'departamento' in self.data:
+                try:
+                    departamento_id = self.data.get('departamento')
+                    self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento_id=departamento_id)
+                except:
+                    pass
+            elif self.instance.pk and self.instance.departamento:
+                self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento=self.instance.departamento)
         
         # def validar_imagen(self):
         #     imagen = self.cleaned_data.get(imagen)
@@ -124,6 +162,7 @@ class AuxAdminFormulario(forms.ModelForm):
             'tipo_doc',
             'documento',
             'genero',
+            'departamento',
             'ciudad',
             'fecha_nacimiento',
             'direccion',
@@ -135,7 +174,18 @@ class AuxAdminFormulario(forms.ModelForm):
             'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
             'imagen':forms.FileInput()
         }
-        
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['ciudad'].queryset = Ciudad.objects.none()
+
+            if 'departamento' in self.data:
+                try:
+                    departamento_id = self.data.get('departamento')
+                    self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento_id=departamento_id)
+                except:
+                    pass
+            elif self.instance.pk and self.instance.departamento:
+                self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento=self.instance.departamento)
         # def validar_imagen(self):
         #     imagen = self.cleaned_data.get(imagen)
 
@@ -218,7 +268,22 @@ class LugarAtencionFormulario(forms.ModelForm):
             'departamento',
             'ciudad',
         ]
-                
+        widgets = {
+            'departamento': forms.Select(attrs={'id': 'id_departamento'}),
+            'ciudad': forms.Select(attrs={'id': 'id_ciudad'}),
+        }
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['ciudad'].queryset = Ciudad.objects.none()
+
+            if 'departamento' in self.data:
+                try:
+                    departamento_id = self.data.get('departamento')
+                    self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento_id=departamento_id)
+                except:
+                    pass
+            elif self.instance.pk and self.instance.departamento:
+                self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento=self.instance.departamento)
 
 class AgendaFormulario(forms.ModelForm):
     class Meta: 

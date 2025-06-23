@@ -5,6 +5,7 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.db.models import Q
+from django.http import JsonResponse
 from proyecto_ips_app.models import * 
 from proyecto_ips_app.forms import *
 
@@ -424,8 +425,8 @@ def listar_especialidad(request):
     especialidades = Especialidad.objects.all()
     return render(request, 'especialidad/listar.html', {'especialidades':especialidades})
 
-def eliminar_especialidad(request, especialidad_id):
-    especialidad = get_object_or_404(Especialidad, id=especialidad_id)
+def eliminar_especialidad(request, id):
+    especialidad = get_object_or_404(Especialidad, pk=id)
     especialidad.delete()
     return redirect(listar_especialidad)
 #endregion
@@ -615,3 +616,10 @@ class EliminarLugarAtencionView(DeleteView):
 
 #endregion
 
+#region Ciudades
+def cargar_ciudades(request):
+    id_departamento = request.GET.get('departamento_id')
+    ciudades = Ciudad.objects.filter(codigo_departamento_id=id_departamento).values('codigo_municipio', 'nombre_ciudad')
+    return JsonResponse(list(ciudades), safe=False)
+
+#endregion
