@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Infinity APP{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>INFINITY</h1>
+            <ul>
+                {% if request.user.is_authenticated %}
+                    {% if request.user.auxadmin %}
+                    <li class="dropdown">
+                        <a href="#">Consultorio</a>
+                        <ul class="dropdown">
+                            <li><a href="{% url 'crear_consultorio' %}">Registrar un consultorio</a></li>
+                            <li><a href="{% url 'listar_consultorio' %}">Lista de consultorios</a></li>
+                        </ul>
+                    </li>   
+                    <li class="dropdown">
+                        <a href="#">Lugar de Atención</a>
+                        <ul class="dropdown">
+                            <li><a href="{% url 'crear_lugar_atencion' %}">Registrar un Lugar de Atención</a></li>
+                            <li><a href="{% url 'listar_lugar_atencion' %}">Lista de Lugares de Atención</a></li>
+                        </ul>
+                    </li>   
+                    <li class="dropdown">
+                        <a href="#">Especialidades</a>
+                        <ul class="dropdown">
+                            <li><a href="{% url 'crear_especialidad' %}">Registrar una especialidad</a></li>
+                            <li><a href="{% url 'listar_especialidad' %}">Listar especialidades</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Grupo de Ingresos</a>
+                        <ul class="dropdown">
+                            <li><a href="{% url 'crear_grupo_ingresos' %}">Crear Paciente</a></li>
+                            <li><a href="{% url 'listar_grupo_ingresos' %}">Lista Paciente</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Estado de Cita</a>
+                        <ul class="dropdown">
+                            <li><a href="{% url 'crear_estado_cita' %}">Crear Paciente</a></li>
+                            <li><a href="{% url 'listar_estado_cita' %}">Lista Paciente</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Pacientes</a>
+                        <ul class="dropdown">
+                            <li><a href="{% url 'crear_paciente' %}">Crear Paciente</a></li>
+                            <li><a href="{% url 'listar_paciente' %}">Lista Paciente</a></li>
+                            <li><a href="{% url 'listar_pacientes_filtrados' %}">Buscar Paciente</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Empleados</a>
+                        <ul class="dropdown">
+                            <li><a href="{% url 'crear_aux_admin' %}">Crear Auxiliar</a></li>
+                            <li><a href="{% url 'listar_aux_admin' %}">Lista Auxiliares</a></li>
+                            <li><a href="{% url 'crear_medico' %}">Registrar un médico</a></li>
+                            <li><a href="{% url 'listar_medico' %}">Lista médicos</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="{% url 'perfil_aux_admin' %}">Ver mi perfil</a></li>
+
+                    {% elif request.user.medico %}
+                    <li><a href="{% url 'perfil_medico' %}">Ver mi perfil médico</a></li>
+                    <li class="dropdown">
+                        <a href="#">Paciente</a>
+                        <ul class="dropdown">
+                            <li><a href="{% url 'listar_pacientes_filtrados' %}">Buscar Paciente</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Cita Médica</a>
+                        <ul class="dropdown">
+                            <li><a href="{% url 'crear_cita' %}">Crear Cita</a></li>
+                            <li><a href="{% url 'listar_citas' %}">Ver Citas</a></li>
+                        </ul>
+                    </li>
+
+                    {% elif request.user.paciente %}
+                        <li><a href="{% url 'detallar_usuario' %}">Ver mi perfil</a></li>
+                        <li><a href="{% url 'mis_citas_medicas' %}">Ver mis citas médicas</a></li>
+
+                    {% endif %}
+                        <li><a href="{% url 'home' %}">Principal</a></li>
+                        <li><a href="{% url 'logout_usuario' %}" onclick="return confirm('¿Realmente desea salir de la aplicación?')"><button id="logout">Salida Segura</button></a></li>
+
+                {% else %}
+                    <li><a href="{% url 'home' %}">Principal</a></li>
+                    <li><a href="{% url 'crear_aux_admin' %}">Registrarme</a></li>
+                    <h3><a href="{% url 'login_usuario' %}">Inicia sesión</a></h3>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <p>2025 - INFINITY - Derechos reservados</p>
+    </footer>
+</body>
+</html>
+

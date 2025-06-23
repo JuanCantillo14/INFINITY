@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Listar Mis Citas Medicas
+{% endblock %}
+
+{% block content %}
+
+<h1>Mis Citas Medicas</h1>
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+<table>
+    <thead>
+        <tr>
+            <th>Dia de la cita</th>
+            <th>Hora de la cita</th>
+            <th>Profesional</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% if citas %}
+            {% for cita in citas %}
+        </tbody>
+        <tr>
+            <td>{{ cita.dia }} </td>
+            <td>{{ cita.get_horario_display }}</td>
+            <td>{{ cita.medico }}</td>
+        </tr>
+    </table>
+    {% endfor %}
+{% else %}
+    <p>No tienes citas médicas asignadas.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Listar Citas {% endblock %}
+
+{% block content %}
+<h1>Lista de Citas</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Médico</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Fórmulas Médicas</th>
+            <th>Exámenes Físicos</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if citas %}
+        {% for cita in citas %}
+        <tr>
+            <td>{{ cita.paciente }}</td>
+            <td>{{ cita.medico }}</td>
+            <td>{{ cita.dia }}</td>
+            <td>{{ cita.get_horario_display }}</td>
+            <td>
+                {% if cita.formulamedica_set.all %}
+                    <ul>
+                    {% for formula in cita.formulamedica_set.all %}
+                        <li>
+                            <strong>Medicamento:</strong> {{ formula.medicamento }}<br>
+                            <strong>Dosificación:</strong> {{ formula.dosificacion }}<br>
+                            <strong>Vía de Administración:</strong> {{ formula.via_admon }}<br>
+                            <strong>Cantidad:</strong> {{ formula.cantidad }}<br>
+                            <strong>Recomendación:</strong> {{ formula.recomendacion }}<br>
+                            <strong>Punto de Entrega:</strong> {{ formula.punto_entrega }}<br>
+                            <strong>Tipo de Convenio:</strong> {{ formula.tipo_convenio }}<br>
+                            <strong>Dato de Contacto:</strong> {{ formula.dato_contacto }}<br>
+                            <strong>Fecha de Expiración:</strong> {{ formula.fecha_exp }}<br>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No hay citas para mostrar</p>
+                {% endif %}
+            </td>
+            <td>
+                {% if cita.examenfisico_set.all %}
+                    <ul>
+                    {% for examen in cita.examenfisico_set.all %}
+                        <li>
+                            <strong>Código de Remisión:</strong> {{ examen.cod_remision }}<br>
+                            <strong>Cabeza, Cuello, Otros:</strong> {{ examen.cabeza_cuello_otros }}<br>
+                            <strong>Cardiorespiratorio:</strong> {{ examen.cardiorespiratorio }}<br>
+                            <strong>Gastrointestinal:</strong> {{ examen.gastrointestinal }}<br>
+                            <strong>Genito Urinario:</strong> {{ examen.genito_urinario }}<br>
+                            <strong>Osteomuscular:</strong> {{ examen.osteomuscular }}<br>
+                            <strong>Extremidad Inferior:</strong> {{ examen.extremidad_inferior }}<br>
+                            <strong>Neurológico:</strong> {{ examen.neurologico }}<br>
+                            <strong>Hematopoyético:</strong> {{ examen.hematopoyetico }}<br>
+                            <strong>Piel, Farenas:</strong> {{ examen.piel_farenas }}<br>
+                            <strong>Otros:</strong> {{ examen.otros }}<br>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    No hay exámenes físicos
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}

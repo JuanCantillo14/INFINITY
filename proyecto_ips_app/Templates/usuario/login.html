@@ -1,0 +1,46 @@
+<!-- {% extends 'base.html' %}
+
+{% load static %} -->
+
+<!-- {% block title %}
+Inicio de sesión
+{% endblock %} -->
+
+<!-- {% block content %} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
+    <title>Inicio de Sesión</title>
+</head>
+<body>
+    <h1>BIENVENIDO A INFINITY</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        <label for="">Usuario/Documento</label>
+        <input type="text" name="username" required>
+        
+        <label for="">Contraseña</label>
+        <input type="password" name="password" required>
+        
+        <p>{{ mensaje_error }}<p>
+            
+            <button>Iniciar sesión</button>
+        <p class="conectate">o conectate con</p>
+        <div class="imagenes">    
+        <img src="{% static 'img/facebook.png' %}" alt="" class="img">
+        <img src="{% static 'img/gmail.png' %}" alt="" class="img">
+        <img src="{% static 'img/logotipo-de-twitter.png' %}" alt="" class="img">
+        <img src="{% static 'img/manzana.png' %}" alt="" class="img">
+        </div>
+        </form>
+        
+    
+</body>
+    </html>
+    
+    <!-- {% endblock%} -->
+    

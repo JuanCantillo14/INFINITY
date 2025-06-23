@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Listas Estado Cita
+{% endblock %}
+
+{% block content %}
+
+    <h1>Listas Estado Cita</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre de Estado</th>
+                <th>Descripción</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if estado_citas %}
+            {% for estado_cita in estado_citas %}
+            <tr>
+                <td>{{ estado_cita.nombre_estado }}</td>
+                <td>{{ estado_cita.descripcion }}</td>
+                <td>
+                    <a href="{% url 'eliminar_estado_cita' estado_cita.id %}" onclick="return confirm('¿Realmente desea eliminar este estado de cita?')">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+                <p>No hay datos para mostrar</p>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

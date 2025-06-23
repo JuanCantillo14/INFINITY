@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Listar Especialidades
+{% endblock %}
+
+{% block content %}
+
+    <h1>Lista Especialidades</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre Especialidad</th>
+                <th>Descripcion</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if especialidades %}
+            {% for especialidad in especialidades %}
+            <tr>
+                <td>{{ especialidad.nombre_especialidad }}</td>
+                <td>{{ especialidad.descripcion }}</td>
+                <td><a href="{% url 'eliminar_especialidad' especialidad.id %}" onclick="return confirm('¿Realmente desea eliminar esta especialidad?')">Eliminar</a></td>      
+            </tr>
+            {% endfor %}
+            {% else %}
+                <p>No hay pacientes para mostrar</p>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

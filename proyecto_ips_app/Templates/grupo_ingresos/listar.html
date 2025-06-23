@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Listas Grupo Ingresos
+{% endblock %}
+
+{% block content %}
+
+    <h1>Listas Grupo Ingresos</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nivel de Ingresos</th>
+                <th>Valor</th>
+                <th>Descripción</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if grupo_ingresoss %}
+            {% for grupo_ingresos in grupo_ingresoss %}
+            <tr>
+                <td>{{ grupo_ingresos.nivel_ingresos }}</td>
+                <td>{{ grupo_ingresos.valor }}</td>
+                <td>{{ grupo_ingresos.descripcion }}</td>
+                <td>
+                    <a href="{% url 'eliminar_grupo_ingresos' grupo_ingresos.id %}" onclick="return confirm('¿Realmente desea eliminar este Grupo de Ingresos?')">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+                <p>No hay datos para mostrar</p>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

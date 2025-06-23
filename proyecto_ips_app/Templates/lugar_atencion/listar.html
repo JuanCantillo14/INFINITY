@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Listas Lugar de Atención
+{% endblock %}
+
+{% block content %}
+
+    <h1>Listas Lugar de Atención</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Lugar de Atención</th>
+                <th>Dirección</th>
+                <th>Departamento</th>
+                <th>Ciudad</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if lugar_atenciones %}
+            {% for lugar_atencion in lugar_atenciones  %}
+            <tr>
+                <td>{{ lugar_atencion.nombre_lugar }}</td>
+                <td>{{ lugar_atencion.direccion_lugar }}</td>
+                <td>{{ lugar_atencion.departamento }}</td>
+                <td>{{ lugar_atencion.ciudad }}</td>
+                <td>
+                    <a href="{% url 'eliminar_lugar_atencion' lugar_atencion.id %}" onclick="return confirm('¿Realmente desea eliminar este Lugar de Atención?')">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+                <p>No hay datos para mostrar</p>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

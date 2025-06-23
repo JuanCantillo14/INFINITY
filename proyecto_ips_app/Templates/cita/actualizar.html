@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Actualizar Cita Médica</h2>
+
+  <form method="post">
+    {% csrf_token %}
+
+    <fieldset class="field" style="margin-bottom: 20px;">
+      <legend><strong>Información de la Cita</strong></legend>
+      {{ form_cita.as_p }}
+    </fieldset>
+
+    <fieldset class="field" style="margin-bottom: 20px;">
+      <legend><strong>Examen Físico</strong></legend>
+      {{ form_examen.as_p }}
+    </fieldset>
+
+    <fieldset class="field" style="margin-bottom: 20px;">
+      <legend><strong>Fórmula Médica</strong></legend>
+      {{ form_formula.as_p }}
+    </fieldset>
+
+    <button type="submit">Guardar Cambios</button>
+  </form>
+{% endblock %}
+
+
+
+
+
