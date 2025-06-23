@@ -97,6 +97,19 @@ class PacienteFormulario(forms.ModelForm):
             elif self.instance.pk and self.instance.departamento:
                 self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento=self.instance.departamento)
         
+        def validar_imagen(self):
+            imagen = self.cleaned_data.get(imagen)
+
+            if imagen:
+                extension = os.path.splitext(imagen.name)[1].lower() #Verifica la extensión del archivo
+                if extension not in ['jpg', 'png', 'jpeg']:
+                    raise ValidationError('Debe anexar solo archivos gráficos PNG/JPG/JPEG')
+                
+                if imagen.size > 102400:
+                    raise ValidationError('El tamaño máximo del archivo es 100 KB')
+            return imagen
+
+        
 
 class MedicoFormulario(forms.ModelForm):
     class Meta:
@@ -138,17 +151,17 @@ class MedicoFormulario(forms.ModelForm):
             elif self.instance.pk and self.instance.departamento:
                 self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento=self.instance.departamento)
         
-        # def validar_imagen(self):
-        #     imagen = self.cleaned_data.get(imagen)
+        def validar_imagen(self):
+            imagen = self.cleaned_data.get(imagen)
 
-        #     if imagen:
-        #         extension = os.path.splitext(imagen.name)[1].lower() #Verifica la extensión del archivo
-        #         if extension not in ['jpg', 'png', 'jpeg']:
-        #             raise ValidationError('Debe anexar solo archivos gráficos PNG/JPG/JPEG')
+            if imagen:
+                extension = os.path.splitext(imagen.name)[1].lower() #Verifica la extensión del archivo
+                if extension not in ['jpg', 'png', 'jpeg']:
+                    raise ValidationError('Debe anexar solo archivos gráficos PNG/JPG/JPEG')
                 
-        #         if imagen.size > 102400:
-        #             raise ValidationError('El tamaño máximo del archivo es 100 KB')
-        #     return imagen
+                if imagen.size > 102400:
+                    raise ValidationError('El tamaño máximo del archivo es 100 KB')
+            return imagen
 
 class AuxAdminFormulario(forms.ModelForm):
     class Meta:
@@ -186,17 +199,17 @@ class AuxAdminFormulario(forms.ModelForm):
                     pass
             elif self.instance.pk and self.instance.departamento:
                 self.fields['ciudad'].queryset = Ciudad.objects.filter(codigo_departamento=self.instance.departamento)
-        # def validar_imagen(self):
-        #     imagen = self.cleaned_data.get(imagen)
+        def validar_imagen(self):
+            imagen = self.cleaned_data.get(imagen)
 
-        #     if imagen:
-        #         extension = os.path.splitext(imagen.name)[1].lower() #Verifica la extensión del archivo
-        #         if extension not in ['jpg', 'png', 'jpeg']:
-        #             raise ValidationError('Debe anexar solo archivos gráficos PNG/JPG/JPEG')
+            if imagen:
+                extension = os.path.splitext(imagen.name)[1].lower() #Verifica la extensión del archivo
+                if extension not in ['jpg', 'png', 'jpeg']:
+                    raise ValidationError('Debe anexar solo archivos gráficos PNG/JPG/JPEG')
                 
-        #         if imagen.size > 102400:
-        #             raise ValidationError('El tamaño máximo del archivo es 100 KB')
-        #     return imagen
+                if imagen.size > 102400:
+                    raise ValidationError('El tamaño máximo del archivo es 100 KB')
+            return imagen
 
 class ConsultorioFormulario(forms.ModelForm):
     class Meta:

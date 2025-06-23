@@ -71,7 +71,7 @@ class Usuario(AbstractUser):
     email=models.EmailField(max_length=100,null=False,unique=True,verbose_name='Correo electrónico',validators=[EmailValidator(message="Correo electrónico inválido")])
     telefono=models.CharField(max_length=10,null=False, verbose_name='Número de telefono',default='300437243',validators=[validar_telefono])
     tipo_doc=models.CharField(choices=TIPO_DOC,max_length=2, verbose_name='Tipo de documento', default='CC')
-    documento=models.IntegerField(unique=True, null=False,verbose_name='Número de documento',validators=[validar_documento])
+    documento=models.CharField(unique=True, max_length=10, null=False,verbose_name='Número de documento',validators=[validar_documento])
     genero=models.CharField(max_length=1,null=False,choices=GENERO, verbose_name='Genero',default='M')
     departamento=models.ForeignKey(Departamento, max_length=100, blank=True,verbose_name='Departamento de residencia', on_delete=models.SET_NULL, null=True)
     ciudad=models.ForeignKey(Ciudad, max_length=100, blank=True,verbose_name='Ciudad de residencia', on_delete=models.SET_NULL, null=True)

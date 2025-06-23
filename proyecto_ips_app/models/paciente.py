@@ -9,9 +9,8 @@ class Paciente(Usuario):
         ('NUEVA EPS','Nueva EPS'),
         ('COOSALUD','Coosalud'),
         ('FAMISANAR','Famisanar')]
-    TIPO_REGIMEN=[('C','Cotizante'),
-                ('B','Beneficiario'),
-                ('A','Adicional'),
+    TIPO_REGIMEN=[('CONTR','Contributivo'),
+                ('SUB','Subsidiado'),
                 ('N/A','No aplica')]
     tipo_regimen=models.CharField(max_length=20,null=False,choices=TIPO_REGIMEN, verbose_name='Tipo de regimen')
     ocupacion=models.CharField(max_length=100,blank=True, verbose_name='Ocupación')

@@ -3,10 +3,10 @@ from django.db import models
 
 class Consultorio(models.Model):
     PISO=[('1','1'),
-          ('2','2'),
-          ('3','3')]
+        ('2','2'),
+        ('3','3')]
     piso=models.CharField(verbose_name="Piso", null=False, max_length=4, choices=PISO)
-    num_habitacion=models.PositiveIntegerField(verbose_name="Número de habitación", null=False)
+    num_habitacion=models.PositiveIntegerField(verbose_name="Número de habitación", null=False, unique=True)
     
     
     class Meta:
