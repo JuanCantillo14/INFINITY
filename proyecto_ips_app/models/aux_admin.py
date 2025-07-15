@@ -7,7 +7,7 @@ class AuxAdmin(Usuario):
         db_table='aux_admin'
         
     def __str__(self):
-        return self.first_name, self. last_name
+        return f"{self.first_name} {self. last_name}"
     
         
     def save(self, *args, **kwargs):

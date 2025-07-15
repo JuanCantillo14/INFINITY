@@ -5,15 +5,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
+
 urlpatterns = [
-    path('',home, name='home'),
+    path('',website, name='website'),
+    path('home/',home, name='home'),
     path('accounts/',include('django.contrib.auth.urls')),
     #region Usuario
     path('usuario/registrar/', registrar_usuario, name='registrar_usuario'),
     path('usuario/eliminar/<int:usuario_id>', eliminar_usuario, name='eliminar_usuario'),
     path('usuario/listar/', listar_usuarios, name='listar_usuarios'),
     path('usuario/actualizar/', actualizar_usuario, name='actualizar_usuario'),
-    path('usuario/detallar/', detallar_usuario, name='detallar_usuario'),
+    path('usuario/mi_perfil/', mi_perfil_usuario, name='mi_perfil_usuario'),
     path('usuario/ver-perfil/', ver_perfil_usuario, name='perfil_usuario'),
     path('usuario/login/', login_usuario, name='login_usuario'),
     path('usuario/logout/', logout_usuario, name='logout_usuario'),
@@ -36,6 +38,7 @@ urlpatterns = [
     path('medico/eliminar/<int:id>/',eliminar_medico,name='eliminar_medico'),
     path('medico/ver-perfil/', ver_perfil_medico, name='perfil_medico'),
     path('medico-filtrar/listar/',listar_pacientes_filtrados,name='listar_pacientes_filtrados'),
+    path('medico/medico/', citas_medico, name='citas_medico'),
     #endregion
     
     #region Aux Admin
@@ -48,10 +51,11 @@ urlpatterns = [
     #endregion
 
     #region Cita Medica
-    path('cita/insertar/',agendar_cita, name='crear_cita'),
-    path('cita/listar/',listar_citas,name='listar_citas'), 
-    path('cita/actualizar/<int:id>/',actualizar_cita,name='actualizar_cita'),
-    path('cita/detallar/<int:id>/', detallar_cita, name='detallar_cita'),
+    path('cita/agendar/', agendar_cita, name='agendar_cita'),
+    path('cita/crear/', crear_cita, name='crear_cita'),
+    path('citas/mis/', mis_citas, name='mis_citas'),
+    path('cita/cancelar/<int:cita_id>/', cancelar_cita, name='cancelar_cita'),
+    path('cita/citas_auxiliar/', citas_auxiliar, name='listar_citas'),
     # path('cita/detallar/<int:id>/', detallar_cita, name='detallar_cita'),
     
     #endregion
@@ -62,19 +66,6 @@ urlpatterns = [
     path('especialidad/eliminar/<int:id>/', eliminar_especialidad,name='eliminar_especialidad'),
     #endregion
 
-    #region Consultorio Medico
-    path('consultorio/insertar/',CrearConsultorioView.as_view(), name='crear_consultorio'),
-    path('consultorio/listar/',ListarConsultorioView.as_view(), name='listar_consultorio'),
-    path('consultorios/editar/<int:pk>/', EditarConsultorioView.as_view(), name='editar_consultorio'),
-    path('consultorios/eliminar/<int:pk>/', EliminarConsultorioView.as_view(), name='eliminar_consultorio'),
-    #endregion 
-
-    #region Grupo Ingresos
-    path('grupo_ingresos/insertar/',CrearGrupoIngresosView.as_view(), name='crear_grupo_ingresos'),
-    path('grupo_ingresos/listar/',ListarGrupoIngresosView.as_view(), name='listar_grupo_ingresos'),
-    path('grupo_ingresos/editar/<int:pk>/', EditarGrupoIngresosView.as_view(), name='editar_grupo_ingresos'),
-    path('grupo_ingresos/eliminar/<int:pk>/', EliminarGrupoIngresosView.as_view(), name='eliminar_grupo_ingresos'),
-    #endregion 
     
     #region Estado Cita
     path('estado_cita/insertar/', CrearEstadoCitaView.as_view(), name='crear_estado_cita'),
@@ -84,16 +75,32 @@ urlpatterns = [
     #endregion 
     
     #region Lugar Atención 
-    path('lugar_atencion/', ListarLugarAtencionView.as_view(), name='listar_lugar_atencion'),
+    path('lugar_atencion/listar', ListarLugarAtencionView.as_view(), name='listar_lugar_atencion'),
     path('lugar_atencion/crear/', CrearLugarAtencionView.as_view(), name='crear_lugar_atencion'),
     path('lugar_atencion/editar/<int:pk>/', EditarLugarAtencionView.as_view(), name='editar_lugar_atencion'),
     path('lugar_atencion/eliminar/<int:pk>/', EliminarLugarAtencionView.as_view(), name='eliminar_lugar_atencion'),
     #endregion 
-
+    
+    #region Agenda
+    path('agenda/nueva/', crear_agenda, name='crear_agenda'),
+    path('agenda/listar/', listar_agenda, name='listar_agenda'),
+    path('agenda/listar_aux/',listar_agenda_aux, name='listar_agenda_aux'),
+    #endregion
+    
+    #region ERROR
+    path('error/error_404/',error_404, name='error_404'),
+    path('error/error_400/',error_400, name='error_400'),
+    path('error/error_403/',error_403, name='error_403'),
+    path('error/error_500/',error_500, name='error_500'),
+    
+    
     #region Ciudades
     path('ajax/ciudades/', cargar_ciudades, name='ajax_cargar_ciudades'),
     #endregion
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+if not settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

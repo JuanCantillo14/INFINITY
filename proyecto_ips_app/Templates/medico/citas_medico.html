@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="edicion">
+<h2>Mis Citas Agendadas</h2>
+
+{% if citas %}
+  <table border="1" cellpadding="5">
+    <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cita in citas %}
+        <tr>
+          <td>{{ cita.paciente.get_full_name }}</td>
+          <td>{{ cita.fecha }}</td>
+          <td>{{ cita.hora }}</td>
+          <td>{{ cita.estado }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No tienes citas agendadas.</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -7,13 +7,15 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="edicion">
     <h1>Listas Auxiliares Administrativos</h1>
+
     {% if messages %}
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
     {% endif %}
+
     <table>
         <thead>
             <tr>
@@ -22,41 +24,43 @@
                 <th>Apellidos</th>
                 <th>Correo</th>
                 <th>Fecha de Nacimiento</th>
-                <th>Telefono</th>
+                <th>Teléfono</th>
                 <th>Ciudad</th>
-                <th>Direccion</th>
+                <th>Dirección</th>
                 <th>Imagen</th>
                 <th>Editar</th>
             </tr>
         </thead>
         <tbody>
             {% if aux_admins %}
-            {% for aux_admin in aux_admins %}
-            <tr>
-                <td>{{ aux_admin.tipo_doc }} {{ aux_admin.documento }}</td>
-                <td>{{ aux_admin.first_name }}</td>
-                <td>{{ aux_admin.last_name }}</td>
-                <td>{{ aux_admin.email  }}</td>
-                <td>{{ aux_admin.fecha_nacimiento }}</td>
-                <td>{{ aux_admin.telefono }}</td>
-                <td>{{ aux_admin.ciudad }}</td>
-                <td>{{ aux_admin.direccion }}</td>
-                <td>
-                    {% if aux_admin.imagen %}
-                        <img src="{{ aux_admin.imagen.url }}" alt="Imagen {{ aux_admin.first_name }}" width="150">
-                    {% else %}
-                        <img src="{% static 'img/default_user.png' %}" alt="Imagen del aux_admin" width="150"> 
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="{% url 'detallar_aux_admin' aux_admin.id %}">Información Completa</a>
-                    <a href="{% url 'eliminar_aux_admin' aux_admin.id %}" onclick="return confirm('¿Realmente desea eliminar este Auxiliar Administrativo?')">Eliminar</a>
-                </td>
-            </tr>
-            {% endfor %}
+                {% for aux_admin in aux_admins %}
+                <tr>
+                    <td>{{ aux_admin.tipo_doc }} {{ aux_admin.documento }}</td>
+                    <td>{{ aux_admin.first_name }}</td>
+                    <td>{{ aux_admin.last_name }}</td>
+                    <td>{{ aux_admin.email }}</td>
+                    <td>{{ aux_admin.fecha_nacimiento }}</td>
+                    <td>{{ aux_admin.telefono }}</td>
+                    <td>{{ aux_admin.ciudad }}</td>
+                    <td>{{ aux_admin.direccion }}</td>
+                    <td>
+                        {% if aux_admin.imagen %}
+                            <img src="{{ aux_admin.imagen.url }}" alt="Imagen {{ aux_admin.first_name }}" width="150">
+                        {% else %}
+                            <img src="{% static 'img/default_user.png' %}" alt="Imagen del aux_admin" width="150">
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'eliminar_aux_admin' aux_admin.id %}" onclick="return confirm('¿Realmente desea eliminar este Auxiliar Administrativo?')">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
             {% else %}
-                <p>No hay Auxiliares Administrativos para mostrar</p>
+                <tr>
+                    <td colspan="10">No hay Auxiliares Administrativos para mostrar</td>
+                </tr>
             {% endif %}
         </tbody>
     </table>
+</div>
 {% endblock %}

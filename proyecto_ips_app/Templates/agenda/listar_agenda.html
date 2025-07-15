@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Listar Agendas
+{% endblock %}
+
+{% block content %}
+<div class="edicion">
+    <h1>Agendas Registradas</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Médico</th>
+                <th>Fecha inicio</th>
+                <th>Fecha fin</th>
+                <th>Horas por día</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if agendas %}
+                {% for agenda in agendas %}
+                <tr>
+                    <td>{{ agenda.medico }}</td>
+                    <td>{{ agenda.fecha_inicio }}</td>
+                    <td>{{ agenda.fecha_fin }}</td>
+                    <td>{{ agenda.horas_por_dia }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">No hay agendas registradas.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

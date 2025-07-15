@@ -8,17 +8,10 @@ class UsuarioFormulario(forms.ModelForm):
         model= Usuario
         fields=[
             # 'username', 
-            'rol',
-            'first_name', 
-            'last_name', 
             'email' ,
             'telefono',
-            'tipo_doc',
-            'documento',
-            'genero',
             'departamento',
             'ciudad',
-            'fecha_nacimiento',
             'direccion',
             'imagen',
             'password', 

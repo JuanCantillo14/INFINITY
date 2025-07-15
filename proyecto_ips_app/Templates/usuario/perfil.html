@@ -6,8 +6,12 @@
     Perfil del usuario sin rol en el sistema
 {% endblock %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'perfil.css' %}">
+{% endblock %}
+
 {% block content %}
-    <div class="perfil">
+    <div id="perfil">
     {% if tipo_usuario %}
     <h1>Bienvenido(a) - {{ user.last_name }} {{ user.first_name }}</h1>
     {% endif %}

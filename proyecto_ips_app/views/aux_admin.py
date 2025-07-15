@@ -22,7 +22,7 @@ def crear_aux_admin(request):
         formulario= AuxAdminFormulario()
     return render(request, 'aux_admin/insertar.html',{'formulario':formulario})
 
-
+@login_required
 def listar_aux_admin(request):
     aux_admins = AuxAdmin.objects.all()
     return render(request, 'aux_admin/listar.html', {'aux_admins':aux_admins})

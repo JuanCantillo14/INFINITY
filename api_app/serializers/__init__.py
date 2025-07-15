@@ -4,4 +4,3 @@ from .medico import *
 from .paciente import *
 from .usuario import * 
 from .especialidad import *
-from .consultorio import *

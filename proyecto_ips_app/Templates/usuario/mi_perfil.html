@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Mi perfil
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'perfil.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="edicion">
+    <h2>Mi Perfil</h2>
+    <table>
+        <tbody>
+            <tr>
+                <th>Tipo Documento:</th>
+                <td>{{ request.user.tipo_doc }}</td>
+            </tr>
+            <tr>
+                <th>Documento:</th>
+                <td>{{ request.user.documento }}</td>
+            </tr>
+            <tr>
+                <th>Nombre:</th>
+                <td>{{ request.user.first_name }}</td>
+            </tr>
+            <tr>
+                <th>Apellido:</th>
+                <td>{{ request.user.last_name }}</td>
+            </tr>
+            <tr>
+                <th>Correo:</th>
+                <td>{{ request.user.email }}</td>
+            </tr>
+            <tr>
+                <th>Ciudad:</th>
+                <td>{{ request.user.ciudad }}</td>
+            </tr>
+            <tr>
+                <th>Dirección:</th>
+                <td>{{ request.user.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Teléfono:</th>
+                <td>{{ request.user.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Imagen:</th>
+                <td>
+                    {% if request.user.imagen %}
+                        <img src="{{ request.user.imagen.url }}" alt="Imagen {{ request.user.first_name }}" width="150">
+                    {% else %}
+                        <img src="{% static 'img/default_user.png' %}" alt="Imagen del usuario" width="150">
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Acciones:</th>
+                <td><a href="{% url 'actualizar_usuario' %}">Actualizar mis datos</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -5,109 +5,264 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Infinity APP{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/estetica.css' %}">
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>INFINITY</h1>
-            <ul>
+    <div class="dark-mode-btn" onclick="toggleDarkMode()">
+        <i class="fa-solid fa-sun"></i>
+        <i class="fa-solid fa-moon"></i>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="header">
+            <div class="menu-btn" onclick="toggleSidebar()">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div> 
+            <div class="brand">
+                <i class="fa-solid fa-infinity"></i>
+                <span>INFINITY</span>
+            </div>
+        </div>
+
+        <div class="menu-container">
+            <div class="input-container">
+                <input type="text" name="text" class="input" placeholder="Busca algo...">
+                <span class="icon"> 
+                    <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M14 8H17" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M22 22L20 20" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                </span>
+            </div>
+            <br>
+
+            <ul class="menu">
+                <li class="menu-item menu-item-static active">
+                    <a href="{% url 'website' %}" class="menu-link">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Sitio Web</span>
+                    </a>
+                </li>
+                <li class="menu-item menu-item-static active">
+                    <a href="{% url 'home' %}" class="menu-link">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Menú Principal</span>
+                    </a>
+                </li>
                 {% if request.user.is_authenticated %}
                     {% if request.user.auxadmin %}
-                    <li class="dropdown">
-                        <a href="#">Consultorio</a>
-                        <ul class="dropdown">
-                            <li><a href="{% url 'crear_consultorio' %}">Registrar un consultorio</a></li>
-                            <li><a href="{% url 'listar_consultorio' %}">Lista de consultorios</a></li>
-                        </ul>
-                    </li>   
-                    <li class="dropdown">
-                        <a href="#">Lugar de Atención</a>
-                        <ul class="dropdown">
-                            <li><a href="{% url 'crear_lugar_atencion' %}">Registrar un Lugar de Atención</a></li>
-                            <li><a href="{% url 'listar_lugar_atencion' %}">Lista de Lugares de Atención</a></li>
-                        </ul>
-                    </li>   
-                    <li class="dropdown">
-                        <a href="#">Especialidades</a>
-                        <ul class="dropdown">
-                            <li><a href="{% url 'crear_especialidad' %}">Registrar una especialidad</a></li>
-                            <li><a href="{% url 'listar_especialidad' %}">Listar especialidades</a></li>
+
+                    <!-- Cita Médica -->
+                    <li class="menu-item menu-item-dropdown">
+                        <div class="menu-link" onclick="toggleDropdown(this)">
+                            <i class="fa-solid fa-stethoscope"></i>
+                            <span>Cita Médica</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'crear_cita' %}" class="sub-menu-link">Agendamiento de citas</a></li>
+                            <li><a href="{% url 'listar_citas' %}" class="sub-menu-link">Lista de citas médicas</a></li>
+                            
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#">Grupo de Ingresos</a>
-                        <ul class="dropdown">
-                            <li><a href="{% url 'crear_grupo_ingresos' %}">Crear Paciente</a></li>
-                            <li><a href="{% url 'listar_grupo_ingresos' %}">Lista Paciente</a></li>
+
+                    <!-- Lugar de Atención -->
+                    <li class="menu-item menu-item-dropdown">
+                        <div class="menu-link" onclick="toggleDropdown(this)">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Lugar de Atención</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'crear_lugar_atencion' %}" class="sub-menu-link">Registrar Lugar</a></li>
+                            <li><a href="{% url 'listar_lugar_atencion' %}" class="sub-menu-link">Listar Lugares</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#">Estado de Cita</a>
-                        <ul class="dropdown">
-                            <li><a href="{% url 'crear_estado_cita' %}">Crear Paciente</a></li>
-                            <li><a href="{% url 'listar_estado_cita' %}">Lista Paciente</a></li>
+                    <!-- Agenda -->
+                    <li class="menu-item menu-item-dropdown">
+                        <div class="menu-link" onclick="toggleDropdown(this)">
+                            <i class="fa-regular fa-calendar-days"></i>
+                            <span>Agenda</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'crear_agenda' %}" class="sub-menu-link">Crear Agenda</a></li>
+                            <li><a href="{% url 'listar_agenda_aux' %}" class="sub-menu-link">Listar Agendas</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#">Pacientes</a>
-                        <ul class="dropdown">
-                            <li><a href="{% url 'crear_paciente' %}">Crear Paciente</a></li>
-                            <li><a href="{% url 'listar_paciente' %}">Lista Paciente</a></li>
-                            <li><a href="{% url 'listar_pacientes_filtrados' %}">Buscar Paciente</a></li>
+
+                    <!-- Especialidades -->
+                    <li class="menu-item menu-item-dropdown">
+                        <div class="menu-link" onclick="toggleDropdown(this)">
+                            <i class="fa-solid fa-stethoscope"></i>
+                            <span>Especialidades</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'crear_especialidad' %}" class="sub-menu-link">Registrar especialidad</a></li>
+                            <li><a href="{% url 'listar_especialidad' %}" class="sub-menu-link">Listar especialidades</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#">Empleados</a>
-                        <ul class="dropdown">
-                            <li><a href="{% url 'crear_aux_admin' %}">Crear Auxiliar</a></li>
-                            <li><a href="{% url 'listar_aux_admin' %}">Lista Auxiliares</a></li>
-                            <li><a href="{% url 'crear_medico' %}">Registrar un médico</a></li>
-                            <li><a href="{% url 'listar_medico' %}">Lista médicos</a></li>
+
+                    <!-- Pacientes -->
+                    <li class="menu-item menu-item-dropdown">
+                        <div class="menu-link" onclick="toggleDropdown(this)">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Pacientes</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'crear_paciente' %}" class="sub-menu-link">Crear Paciente</a></li>
+                            <li><a href="{% url 'listar_paciente' %}" class="sub-menu-link">Lista Paciente</a></li>
+                            <li><a href="{% url 'listar_pacientes_filtrados' %}" class="sub-menu-link">Buscar Paciente</a></li>
                         </ul>
                     </li>
-                    
-                    <li><a href="{% url 'perfil_aux_admin' %}">Ver mi perfil</a></li>
+
+                    <!-- Empleados -->
+                    <li class="menu-item menu-item-dropdown">
+                        <div class="menu-link" onclick="toggleDropdown(this)">
+                            <i class="fa-solid fa-user-doctor"></i>
+                            <span>Empleados</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'crear_aux_admin' %}" class="sub-menu-link">Crear Auxiliar</a></li>
+                            <li><a href="{% url 'listar_aux_admin' %}" class="sub-menu-link">Lista Auxiliares</a></li>
+                            <li><a href="{% url 'crear_medico' %}" class="sub-menu-link">Registrar Médico</a></li>
+                            <li><a href="{% url 'listar_medico' %}" class="sub-menu-link">Lista Médicos</a></li>
+                        </ul>
+                    </li>
 
                     {% elif request.user.medico %}
-                    <li><a href="{% url 'perfil_medico' %}">Ver mi perfil médico</a></li>
-                    <li class="dropdown">
-                        <a href="#">Paciente</a>
-                        <ul class="dropdown">
-                            <li><a href="{% url 'listar_pacientes_filtrados' %}">Buscar Paciente</a></li>
+                  
+                    <li class="menu-item menu-item-dropdown">
+                        <div class="menu-link" onclick="toggleDropdown(this)">
+                            <i class="fa-solid fa-stethoscope"></i>
+                            <span>Paciente</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'listar_pacientes_filtrados' %}" class="sub-menu-link">Buscar Paciente</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#">Cita Médica</a>
-                        <ul class="dropdown">
-                            <li><a href="{% url 'crear_cita' %}">Crear Cita</a></li>
-                            <li><a href="{% url 'listar_citas' %}">Ver Citas</a></li>
+                    <li class="menu-item menu-item-dropdown">
+                        <div class="menu-link" onclick="toggleDropdown(this)">
+                            <i class="fa-solid fa-stethoscope"></i>
+                            <span>Citas Médicas</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'citas_medico' %}" class="sub-menu-link">Mis Citas</a></li>
                         </ul>
                     </li>
 
                     {% elif request.user.paciente %}
-                        <li><a href="{% url 'detallar_usuario' %}">Ver mi perfil</a></li>
-                        <li><a href="{% url 'mis_citas_medicas' %}">Ver mis citas médicas</a></li>
-
+                    <li class="menu-item menu-item-dropdown">
+                        <div class="menu-link" onclick="toggleDropdown(this)">
+                            <i class="fa-solid fa-stethoscope"></i>
+                            <span>Nueva Cita</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'agendar_cita' %}" class="sub-menu-link">Medicina General</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-dropdown">
+                        <div class="menu-link" onclick="toggleDropdown(this)">
+                            <i class="fa-solid fa-stethoscope"></i>
+                            <span>Citas agendadas</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'mis_citas' %}" class="sub-menu-link">Mis citas</a></li>
+                        </ul>
+                    </li>
                     {% endif %}
-                        <li><a href="{% url 'home' %}">Principal</a></li>
-                        <li><a href="{% url 'logout_usuario' %}" onclick="return confirm('¿Realmente desea salir de la aplicación?')"><button id="logout">Salida Segura</button></a></li>
+                    <br>
 
+                    <li class="menu-item menu-item-static active">
+                        <a class="Btn" onclick="return confirm('¿Salir?')" href="{% url 'logout_usuario' %}">
+                            <div class="sign">
+                            <svg viewBox="0 0 512 512">
+                                <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9
+                                c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1
+                                c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0
+                                c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32
+                                s-14.3 32-32 32z"/>
+                            </svg>
+                            </div>
+                            <div class="text">Salir</div>
+                        </a>
+                    </li>
+
+                    
                 {% else %}
-                    <li><a href="{% url 'home' %}">Principal</a></li>
-                    <li><a href="{% url 'crear_aux_admin' %}">Registrarme</a></li>
-                    <h3><a href="{% url 'login_usuario' %}">Inicia sesión</a></h3>
+                    <li class="menu-item menu-item-static active">
+                        <a href="{% url 'login_usuario' %}" class="menu-link">
+                            <i class="fa-solid fa-house"></i>
+                            <span>Iniciar Sesión</span>
+                        </a>
+                    </li>
+                    <li class="menu-item menu-item-static active">
+                        <a href="{% url 'crear_aux_admin' %}" class="menu-link">
+                            <i class="fa-solid fa-house"></i>
+                            <span>Registrarme</span>
+                        </a>
+                    </li>
+                </ul>
                 {% endif %}
-            </ul>
-        </nav>
-    </header>
+            </div>
 
-    {% block content %}
-    {% endblock %}
+        <div class="footer">
+            <div class="user">
+                <div class="user-img">
+                    {% if user.imagen %}
+                        <img src="{{ user.imagen.url }}" alt="Imagen de {{ user.first_name }}">
+                    {% else %}
+                        <img src="{% static 'img/default_user.png' %}" alt="Imagen por defecto">
+                    {% endif %}
+                </div>
+                <div class="user-data">
+                
+                    <a href="{% url 'mi_perfil_usuario' %}" class="menu-link">
+                        <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
+                    </a>
+                    <span class="email">{{ user.email }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <footer>
-        <p>2025 - INFINITY - Derechos reservados</p>
-    </footer>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('minimize');
+        }
+
+        function toggleDropdown(el) {
+            const menuItem = el.parentElement;
+            menuItem.classList.toggle('sub-menu-toggle');
+            const submenu = menuItem.querySelector('.sub-menu');
+            if (menuItem.classList.contains('sub-menu-toggle')) {
+                submenu.classList.add('show');
+            } else {
+                submenu.classList.remove('show');
+            }
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+
+    <script>
+        window.logoutUrl = "{% url 'logout_usuario' %}";
+    </script>
+    <script src="{% static 'js/sesion_inactividad.js' %}"></script>
+
 </body>
 </html>
 

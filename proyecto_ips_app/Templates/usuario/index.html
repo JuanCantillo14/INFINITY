@@ -1,0 +1,115 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión   </title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+        
+    <div class="container">
+        <div class="container-form">
+            <form class="sign-in" method="POST">
+                <h2>Iniciar Sesión</h2>
+                {% csrf_token %}
+                <div class="social-networks">
+                    <ion-icon name="logo-twitch"></ion-icon>
+                    <ion-icon name="logo-twitter"></ion-icon>
+                    <ion-icon name="logo-instagram"></ion-icon>
+                    <ion-icon name="logo-tiktok"></ion-icon>
+                </div>
+                <span>Digite su número de documento y contraseña</span>
+                <!-- <div class="container-input">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" name="username" placeholder="Usuario" required>
+                </div>-->
+                <div class="input-group">
+                    <input required type="text" name="username" autocomplete="off" class="input">
+                    <label class="user-label"><ion-icon name="person-circle-outline"></ion-icon> Usuario</label>
+                </div>
+                <br>
+
+                <div class="input-group">
+                    <input required type="password" name="password" autocomplete="off" class="input">
+                    <label class="user-label"> <ion-icon name="lock-closed"></ion-icon> Contraseña</label>
+                </div>
+                
+                <!-- <div class="container-input">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" name="password" placeholder="Contraseña" required >
+                </div> -->
+                <p id="error">{{ mensaje_error }}</p>
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                <button class="button" type="submit">
+                    <span class="span-mother">
+                        <span>I</span>
+                        <span>N</span>
+                        <span>C</span>
+                        <span>I</span>
+                        <span>A</span>
+                        <span>R</span>
+                        <span>&nbsp;</span>
+                        <span>S</span>
+                        <span>E</span>
+                        <span>S</span>
+                        <span>I</span>
+                        <span>O</span>
+                        <span>N</span>
+                    </span>
+                    <span class="span-mother2">
+
+                    </span>
+                </button>
+            </form>
+        </div>
+
+        <div class="container-form">
+            <form class="sign-up">
+                <h2>Registrarse</h2>
+                <div class="social-networks">
+                    <ion-icon name="logo-twitch"></ion-icon>
+                    <ion-icon name="logo-twitter"></ion-icon>
+                    <ion-icon name="logo-instagram"></ion-icon>
+                    <ion-icon name="logo-tiktok"></ion-icon>
+                </div>
+                <span>Use su correo electrónico para registrarse</span>
+                <div class="container-input">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" placeholder="Nombre">
+                </div>
+                <div class="container-input">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <input type="text" placeholder="Email">
+                </div>
+                <div class="container-input">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" placeholder="Password">
+                </div>
+                <button class="button" >REGISTRARSE</button>
+            </form>
+        </div>
+
+        <div class="container-welcome">
+            <div class="welcome-sign-up welcome">
+                <h3>¡Bienvenido!</h3>
+                <p>Ingrese sus datos personales para usar todas las funciones de INFINITY</p>
+                <a class="btn-12" href="{% url 'website' %}"><span>Sitio Web</span></a>
+            </div>
+            <div class="welcome-sign-in welcome">
+                <h3>¡Hola!</h3>
+                <p>Regístrese con sus datos personales para usar todas las funciones del sitio</p>
+                <button class="button" id="btn-sign-in">Iniciar Sesión</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>                                  

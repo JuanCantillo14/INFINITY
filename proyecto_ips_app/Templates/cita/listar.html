@@ -7,50 +7,53 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="edicion">
     <h1>Listas de Citas</h1>
+
     {% if messages %}
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
     {% endif %}
+
     <table>
         <thead>
             <tr>
-                <th>Nombre del Paciente</th>
-                <th>Documento del Paciente</th>
-                <th>Medico</th>
-                <th>Fecha Consulta</th>
+                <th>Fecha de Consulta</th>
                 <th>Hora Consulta</th>
+                <th>Medico</th>
+                <th>Paciente</th>
+                <th>Lugar de atención</th>
+                <th>Estado de Cita</th>
                 <th>Gestionar</th>
             </tr>
         </thead>
         <tbody>
             {% if citas %}
-            {% for cita in citas %}
-            <tr>
-                <td>{{ cita.paciente }}</td>
-                <td>{{ cita.paciente.documento }}</td>
-                <td>{{ cita.medico }}</td>
-                <td>{{ cita.dia }}</td>
-                <td>{{ cita.get_horario_display }}</td>
-                <td>
-                    {% if request.user.is_authenticated %}
-                        {% if request.user.empleado.medico %}
-                        <a href="{% url 'actualizar_cita' cita.id %}">Gestionar Cita</a>
-                        <a href="{% url 'detallar_cita' cita.id %}">Observar</a>
-                        {% elif request.user.empleado.auxadmin %}
-                        <a href="{% url 'detallar_cita' cita.id %}">Observar</a>
+                {% for cita in citas %}
+                <tr>
+                    <td>{{ cita.fecha }}</td>
+                    <td>{{ cita.hora }}</td>
+                    <td>{{ cita.medico }}</td>
+                    <td>{{ cita.paciente }}</td>
+                    <td>{{ cita.lugar_atencion }}</td>
+                    <td>{{ cita.get_horario_display }}</td>
+                    <td>
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.empleado.medico %}
+                            <a href="{% url 'detallar_cita' cita.id %}">Observar</a>
+                            {% elif request.user.empleado.auxadmin %}
+                            <a href="{% url 'actualizar_cita' cita.id %}">Gestionar Cita</a>
+                                <a href="{% url 'detallar_cita' cita.id %}">Observar</a>
+                            {% endif %}
                         {% endif %}
-                        
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
             {% else %}
-                <p>No hay citas medicas para mostrar</p>
+                <tr><td colspan="6">No hay citas médicas para mostrar</td></tr>
             {% endif %}
-
         </tbody>
     </table>
+</div>
 {% endblock %}

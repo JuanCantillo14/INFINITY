@@ -1,0 +1,485 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFINITY</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- SwiperJS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- normalize css -->
+    <link rel = "stylesheet" href = "{% static 'css/normalize.css' %}">
+    <!-- custom css -->
+    <link rel = "stylesheet" href = "{% static 'css/website.css' %}">
+</head>
+<body>
+    
+
+    <!-- header -->
+    <header class = "header bg-blue">
+        <nav class = "navbar bg-blue">
+            <div class = "container flex">
+                <div class="button-container">
+                    <button class="brutalist-button openai button-1">
+                        <div class="openai-logo">
+                        <img src="{% static 'img/GOGO.png' %}" alt="Mi Logo" class="openai-icon" />
+                        </div>
+                        <div class="button-text">
+                        <span>INFINITY</span>
+                        <span>A tu alcance</span>
+                        </div>
+                    </button>
+                </div>
+
+                <button type = "button" class = "navbar-show-btn">
+                    <img src = "{% static 'img/ham-menu-icon.png' %}">
+                </button>
+
+                <div class = "navbar-collapse bg-white">
+                    <button type = "button" class = "navbar-hide-btn">
+                        <img src = "{% static 'img/close-icon.png' %}">
+                    </button>
+                    <ul class = "navbar-nav">
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Inicio</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Conoce Más</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Servicios</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Doctores</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Áreas de Interés</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Blog</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Contactanos</a>
+                        </li>
+                    </ul>
+                    <div class = "search-bar">
+                        <form>
+                            <div class = "search-bar-box flex">
+                                <a href="{% url 'login_usuario' %}" type="button" class="learn-more">
+                                    <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                    </span>
+                                    <span class="button-text">INICIAR SESIÓN</span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+
+    <div class="header-inner text-white text-center">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="container grid">
+                    <div class="header-inner-left">
+                        <h1>Tu app confiable<br><span>Aliados de tu Salud</span></h1>
+                        <p class="lead">El mejor sitio de servicios médicos para ti</p>
+                        <p class="text text-md">Gestiona tus citas de forma ágil, segura y desde cualquier lugar.</p>
+                        <div class="btn-group">
+                            <a href="#" class="button">
+                                <span class="button_lg">
+                                    <span class="button_sl"></span>
+                                    <span class="button_text">Conoce más</span>
+                                </span>
+                            </a>
+                            <a href="{% url 'login_usuario' %}" class="button">
+                                <span class="button_lg">
+                                    <span class="button_sl"></span>
+                                    <span class="button_text">Iniciar Sesión</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="header-inner-right">
+                        <img src="{% static 'img/doctores.png' %}">
+                    </div>
+                </div>
+            </div>
+            <!-- Puedes duplicar este swiper-slide con más imágenes o contenidos -->
+            <div class="swiper-slide">
+                <div class="container grid">
+                    <div class="header-inner-left">
+                        <h1>Atención rápida<br><span>Y especializada</span></h1>
+                        <p class="lead">Citas médicas fáciles de agendar</p>
+                        <p class="text text-md">Todo desde tu celular o computador</p>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-white">Saber más</a>
+                        </div>
+                    </div>
+                    <div class="header-inner-right">
+                        <img src="{% static 'img/header2.png' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container grid">
+                    <div class="header-inner-left">
+                        <h1>Atención rápida<br><span>Y especializada</span></h1>
+                        <p class="lead">Citas médicas fáciles de agendar</p>
+                        <p class="text text-md">Todo desde tu celular o computador</p>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-white">Saber más</a>
+                        </div>
+                    </div>
+                    <div class="header-inner-right">
+                        <img src="{% static 'img/header2.png' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Controles de navegación -->
+    </div>
+</div>
+
+    </header>
+    <!-- end of header -->
+
+    <main>
+        <!-- about section -->
+        <section id = "about" class = "about py">
+            <div class = "about-inner">
+                <div class = "container grid">
+                    <div class = "about-left text-center">
+                        <div class = "section-head">
+                            <h2>Sobre Nosotros</h2>
+                            <div class = "border-line"></div>
+                        </div>
+                        <p class = "text text-lg">Infinity es una solución de software desarrollada para gestionar eficientemente procesos internos en entornos dinámicos. Su diseño modular, escalable y adaptable permite integrarse con facilidad a flujos de trabajo existentes, mejorando la organización, el acceso a la información y la interacción del usuario.</p>
+                        <a href = "#" class = "btn btn-white">Leer más</a>
+                    </div>
+                    <div class = "about-right flex">
+                        <div class = "img">
+                            <img src = "{% static 'img/about-img.png' %}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end of about section -->
+
+        <!-- banner one -->
+        <section id = "banner-one" class = "banner-one text-center">
+            <div class = "container text-white">
+                <blockquote class = "lead"><i class = "fas fa-quote-left"></i> La salud no lo es todo, pero sin ella, todo lo demás es nada. <i class = "fas fa-quote-right"></i></blockquote>
+                <small class = "text text-sm">- Arthur Schopenhauer</small>
+            </div>
+        </section>
+        <!-- end of banner one -->
+
+        <!-- services section -->
+        <section id = "services" class = "services py">
+            <div class = "container">
+                <div class = "section-head text-center">
+                    <h2 class = "lead">Los mejores servicios médicos para el cuidado de tu salud</h2>
+                    <p class = "text text-lg">Una forma perfecta de mostrar los servicios de su hospital.</p>
+                    <div class = "line-art flex">
+                        <div></div>
+                        <img src = "{% static 'img/4-dots.png' %}">
+                        <div></div>
+                    </div>
+                </div>
+                <div class = "services-inner text-center grid">
+                    <article class = "service-item">
+                        <div class = "icon">
+                            <img src = "{% static 'img/service-icon-1.png' %}">
+                        </div>
+                        <h3>Cuidado de tu salud</h3>
+                        <p class = "text text-sm">Tu salud es lo más importante. Cuídala con hábitos saludables, atención médica oportuna y decisiones conscientes cada día.</p>
+                    </article>
+
+                    <article class = "service-item">
+                        <div class = "icon">
+                            <img src = "{% static 'img/service-icon-2.png' %}">
+                        </div>
+                        <h3>Laboratorios Médicos</h3>
+                        <p class = "text text-sm">Ofrecemos servicios de laboratorio médico confiables y precisos, con tecnología moderna y atención profesional para el cuidado de tu salud.</p>
+                    </article>
+
+                    <article class = "service-item">
+                        <div class = "icon">
+                            <img src = "{% static 'img/service-icon-3.png' %}">
+                        </div>
+                        <h3>Servicios de Emergencia</h3>
+                        <p class = "text text-sm">Atención médica inmediata para cualquier situación, disponible las 24 horas para cuidar tu salud cuando más lo necesitas.</p>
+                    </article>
+
+                    <article class = "service-item">
+                        <div class = "icon">
+                            <img src = "{% static 'img/service-icon-4.png' %}">
+                        </div>
+                        <h3>Primeros Auxilios</h3>
+                        <p class = "text text-sm">Los primeros auxilios salvan vidas. Actuar con rapidez y conocimiento puede marcar la diferencia en una emergencia.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- end of services section -->
+
+        <!-- banner two section -->
+        <section id = "banner-two" class = "banner-two text-center">
+            <div class = "container grid">
+                <div class = "banner-two-left">
+                    <img src = "{% static 'img/programa.jpg' %}">
+                </div>
+                <div class = "banner-two-right">
+                    <p class = "lead text-white">Agendar tu cita médica es rápido, fácil y al alcance de tu mano. Tu salud, sin complicaciones</p>
+                </div>
+            </div>
+        </section>
+        <!-- end of banner two section -->
+
+        <!-- doctors section -->
+        <section id = "doc-panel" class = "doc-panel py">
+            <div class = "container">
+                <div class = "section-head">
+                    <h2>Nuestro Profesionales de la Salud</h2>
+                </div>
+
+                <div class = "doc-panel-inner grid">
+                    <div class = "doc-panel-item">
+                        <div class = "img flex">
+                            <img src = "{% static 'img/doc-1.png' %}" alt = "doctor image">
+                            <div class = "info text-center bg-blue text-white flex">
+                                <p class = "lead">samuel colina</p>
+                                <p class = "text-lg">Medicina</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = "doc-panel-item">
+                        <div class = "img flex">
+                            <img src = "{% static 'img/doc-2.png' %}" alt = "doctor image">
+                            <div class = "info text-center bg-blue text-white flex">
+                                <p class = "lead">elisa fernandéz</p>
+                                <p class = "text-lg">Medicina</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = "doc-panel-item">
+                        <div class = "img flex">
+                            <img src = "{% static 'img/doc-3.png' %}" alt = "doctor image">
+                            <div class = "info text-center bg-blue text-white flex">
+                                <p class = "lead">maria peréz</p>
+                                <p class = "text-lg">Medicina</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end of doctors section -->
+
+        <!-- package services section -->
+        <section id = "package-service" class = "package-service py text-center">
+            <div class = "container">
+                <div class = "package-service-head text-white">
+                    <h2>Servicios</h2>
+                    <p class = "text text-lg">Los mejores servicios médicos para ti</p>
+                </div>
+                <div class = "package-service-inner grid">
+                    <div class = "package-service-item bg-white">
+                        <div class = "icon flex">
+                            <i class = "fas fa-phone fa-2x"></i>
+                        </div>
+                        <h3>Contactanos</h3>
+                        <p class = "text text-sm">¿Tienes preguntas o necesitas ayuda? Contáctanos y con gusto te atenderemos lo antes posible</p>
+                        <a href = "#" class = "btn btn-blue">Conoce más</a>
+                    </div>
+
+                    <div class = "package-service-item bg-white">
+                        <div class = "icon flex">
+                            <i class = "fas fa-calendar-alt fa-2x"></i>
+                        </div>
+                        <h3>Programación Médica</h3>
+                        <p class = "text text-sm">Agenda tus citas médicas de manera rápida y sencilla. Elige el profesional, la fecha y la hora que mejor se adapten a ti.</p>
+                        <a href = "#" class = "btn btn-blue">Conoce más</a>
+                    </div>
+                    
+                    <div class = "package-service-item bg-white">
+                        <div class = "icon flex">
+                            <i class = "fas fa-comments fa-2x"></i>
+                        </div>
+                        <h3>Canales de ayuda</h3>
+                        <p class = "text text-sm">Contamos con diversos canales de ayuda para brindarte soporte oportuno y resolver tus inquietudes cuando lo necesites.</p>
+                        <a href = "#" class = "btn btn-blue">Conoce más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end of package services section -->
+
+        <!-- posts section -->
+        <section id = "posts" class = "posts py">
+            <div class = "container">
+                <div class = "section-head">
+                    <h2>Últimos post médicos</h2>
+                </div>
+                <div class = "posts-inner grid">
+                    <article class = "post-item bg-white">
+                        <div class = "img">
+                            <img src = "{% static 'img/post-1.jpg' %}">
+                        </div>
+                        <div class = "content">
+                            <h4>Historias inspiradoras de atención centrada en la persona y la familia durante una pandemia mundial.</h4>
+                            <p class = "text text-sm">Durante la pandemia, surgieron historias que demostraron el poder de una atención médica centrada en la persona y su familia. Profesionales de la salud acompañaron con empatía, adaptaron cuidados y mantuvieron el vínculo humano, incluso en medio de la distancia y la incertidumbre.</p>
+    
+                            <div class = "info flex">
+                                <small class = "text text-sm"><i class = "fas fa-clock"></i> Octubre 27, 2025</small>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class = "post-item bg-white">
+                        <div class = "img">
+                            <img src = "{% static 'img/post-2.jpg' %}">
+                        </div>
+                        <div class = "content">
+                            <h4>Cuida tu salud, cada día cuenta</h4>
+                            <p class = "text text-sm">Mantener buenos hábitos diarios es clave para una vida larga y plena. Una alimentación balanceada, actividad física regular, descanso adecuado y chequeos médicos oportunos pueden prevenir muchas enfermedades. Recuerda: pequeños cambios hoy pueden marcar una gran diferencia en tu bienestar mañana. <br>
+                            <br>
+                        <br></p>
+                            <div class = "info flex">
+                                <small class = "text text-sm"><i class = "fas fa-clock"></i> Junio 30, 2025</small>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class = "post-item bg-white">
+                        <div class = "img">
+                            <img src = "{% static 'img/post-3.jpg' %}">
+                        </div>
+                        <div class = "content">
+                            <h4>¡Puedes aprender desde cualquier lugar!</h4>
+                            <p class = "text text-sm">Esta plataforma es virtual y te permite aprender desde tu casa, tu lugar de trabajo o la casa de tus familiares. Tienes acceso a toda la información sin tener que desplazarte.</p><br><br><br><br>
+                            <div class = "info flex">
+                                <small class = "text text-sm"><i class = "fas fa-clock"></i> Octubre 07, 2014</small>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- end of posts section -->
+
+        <!-- contact section -->
+        <section id = "contact" class = "contact py">
+            <div class = "container grid">
+                <div class = "contact-left">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15908.192447943211!2d-74.23882541284176!3d4.585386700000018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f757e767971af%3A0x709ad525f0bfde93!2sHospital%20Mario%20Gait%C3%A1n%20Yanguas%20de%20Soacha!5e0!3m2!1ses-419!2sco!4v1752126737804!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class = "contact-right text-white text-center bg-blue">
+                    <div class = "contact-head">
+                        <h3 class = "lead">Contáctanos</h3>
+                        <p class = "text text-md">¿Tienes dudas? Estamos aquí para ayudarte..</p>
+                    </div>
+                    <form>
+                        <div class = "form-element">
+                            <input type = "text" class = "form-control" placeholder="Tu nombre">
+                        </div>
+                        <div class = "form-element">
+                            <input type = "email" class = "form-control" placeholder="Tu correo electrónico">
+                        </div>
+                        <div class = "form-element">
+                            <textarea rows = "5" placeholder="Tu solicitud" class = "form-control"></textarea>
+                        </div>
+                        <button type = "submit" class = "btn btn-white btn-submit">
+                            <i class = "fas fa-arrow-right"></i> Escribenos
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- end of contact section -->
+    </main>
+
+    <!-- footer  -->
+    <footer id = "footer" class = "footer text-center">
+        <div class = "container">
+            <div class = "footer-inner text-white py grid">
+                <div class = "footer-item">
+                    <h3 class = "footer-head">Nosotros</h3>
+                    <div class = "icon">
+                        <img src = "{% static 'img/GOGO.png' %}">
+                    </div>
+                    <p class = "text text-md">Infinity: salud sin límites, atención a tu medida.</p>
+                    <address>
+                        INFINITY <br>                        
+                        Soacha
+                    </address>
+                </div>
+
+                <div class = "footer-item">
+                    <h3 class = "footer-head">palabras clave</h3>
+                    <ul class = "tags-list flex">
+                        <li>centro médico</li>
+                        <li>emergencias</li>
+                        <li>servicios</li>
+                        <li>citas médicas</li>
+                        <li>medicina</li>
+                        <li>salud</li>
+                    </ul>
+                </div>
+
+                <div class = "footer-item">
+                    <h3 class = "footer-head">Consultas</h3>
+                    <ul>
+                        <li><a href = "#" class = "text-white">Políticas de uso y seguridad</a></li>
+                        <li><a href = "#" class = "text-white">Política de Seguridad y Ciberseguridad</a></li>
+                        <li><a href = "#" class = "text-white">Políticas de Privacidad y Datos</a></li>
+                        <li><a href = "#" class = "text-white">Ley de Datos Personales</a></li>
+                    </ul>
+                </div>
+
+                <div class = "footer-item">
+                    <h3 class = "footer-head">Atención</h3>
+                    <p class = "text text-md">Escribenos tus PQRS</p>
+                    <ul class = "appointment-info">
+                        <li>
+                            <i class = "fas fa-envelope"></i>
+                            <span>servicios_infinity@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class = "fas fa-phone"></i>
+                            <span>+601 882 4644</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class = "footer-links">
+                <ul class = "flex">
+                    <li><a href = "#" class = "text-white flex"> <i class = "fab fa-facebook-f"></i></a></li>
+                    <li><a href = "#" class = "text-white flex"> <i class = "fab fa-twitter"></i></a></li>
+                    <li><a href = "#" class = "text-white flex"> <i class = "fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <!-- end of footer  -->
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- custom js -->
+    <script src = "{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

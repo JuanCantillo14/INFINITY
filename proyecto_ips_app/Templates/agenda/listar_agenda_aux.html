@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="edicion">
+  <h2>Agendas por Médico</h2>
+
+  <!-- Formulario de búsqueda -->
+  <form method="get" style="margin-bottom: 1.5rem;">
+    <input type="text" name="consultaSQL" value="{{ consultaSQL }}" placeholder="Buscar por nombre o documento">
+    <button type="submit">Buscar</button>
+  </form>
+
+  <!-- Resultados por médico -->
+  {% for medico, agendas in agendas_por_medico %}
+    <h3>{{ medico.first_name }} {{ medico.last_name }}</h3>
+    <ul>
+      {% for agenda in agendas %}
+        <li>
+          Desde {{ agenda.fecha_inicio|date:"j \\d\\e F \\d\\e Y" }} hasta {{ agenda.fecha_fin|date:"j \\d\\e F \\d\\e Y" }} |
+          Horario:
+          {{ agenda.hora_inicio|time:"g:i" }}
+          {% if agenda.hora_inicio.hour < 12 %}
+            a.m.
+          {% else %}
+            p.m.
+          {% endif %}
+          a
+          {{ agenda.hora_fin|time:"g:i" }}
+          {% if agenda.hora_fin.hour < 12 %}
+            a.m.
+          {% else %}
+            p.m.
+          {% endif %}
+          | {{ agenda.horas_por_dia }} horas/día
+        </li>
+      {% endfor %}
+    </ul>
+  {% empty %}
+    <p>No hay agendas creadas.</p>
+  {% endfor %}
+</div>
+{% endblock %}

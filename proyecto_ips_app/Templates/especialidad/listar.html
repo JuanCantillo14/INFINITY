@@ -7,33 +7,42 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="edicion">
     <h1>Lista Especialidades</h1>
+
     {% if messages %}
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
     {% endif %}
+
     <table>
         <thead>
             <tr>
                 <th>Nombre Especialidad</th>
-                <th>Descripcion</th>
+                <th>Descripción</th>
                 <th>Editar</th>
             </tr>
         </thead>
         <tbody>
             {% if especialidades %}
-            {% for especialidad in especialidades %}
-            <tr>
-                <td>{{ especialidad.nombre_especialidad }}</td>
-                <td>{{ especialidad.descripcion }}</td>
-                <td><a href="{% url 'eliminar_especialidad' especialidad.id %}" onclick="return confirm('¿Realmente desea eliminar esta especialidad?')">Eliminar</a></td>      
-            </tr>
-            {% endfor %}
+                {% for especialidad in especialidades %}
+                <tr>
+                    <td>{{ especialidad.nombre_especialidad }}</td>
+                    <td>{{ especialidad.descripcion }}</td>
+                    <td>
+                        <a href="{% url 'eliminar_especialidad' especialidad.id %}" onclick="return confirm('¿Realmente desea eliminar esta especialidad?')">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
             {% else %}
-                <p>No hay pacientes para mostrar</p>
+                <tr>
+                    <td colspan="3">No hay especialidades para mostrar</td>
+                </tr>
             {% endif %}
         </tbody>
     </table>
+</div>
 {% endblock %}

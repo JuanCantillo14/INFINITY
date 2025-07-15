@@ -1,0 +1,457 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F4F3;
+}
+.container{
+    width: 800px;
+    height: 500px;
+    display: flex;
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgb(0, 0,0,0.3)
+}
+.container-form{
+    width: 100%;
+    overflow: hidden;
+}
+.container-form form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-in;
+}
+.container-form h2{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.social-networks{
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+.social-networks ion-icon{
+    border: 1px solid #C9CCCB;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+}
+.container-form span{
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+.container-input{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 15px;
+    background-color: #EEEEEE;
+}
+.container-input input{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+}
+.container-form a{
+    color: black;
+    font-size:  14px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+/* .button{
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;  
+    background-color: #3AB397;  
+    color: white;
+} */
+/*Animation form*/
+
+.sign-up{
+    transform: translateX(-100%);
+}
+.container.toggle .sign-in{
+    transform: translateX(100%);
+}
+.container.toggle .sign-up{
+    transform: translateX(0);
+}
+
+/*Welcome*/
+.container-welcome{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform: translateX(100%);
+    background-color: #3AB397;
+    transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+    overflow: hidden;
+    border-radius: 50% 0 0 50%;
+}
+.container.toggle .container-welcome{
+    transform: translateX(0);
+    border-radius: 0 50% 50% 0;
+    background-color: #3AA8AD;
+}
+.container-welcome .welcome{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 50px;
+    color: white;
+    transition: transform 0.5s ease-in-out;
+}
+.welcome-sign-in{
+    transform: translateX(100%);
+}
+.container-welcome h3{
+    font-size: 40px;
+}
+.container-welcome p{
+    font-size: 14px;
+    text-align: center;
+}
+.container-welcome .button{
+    border: 2px solid white;
+    background-color: transparent;
+}
+
+.container.toggle .welcome-sign-in{
+    transform: translateX(0);
+}
+.container.toggle .welcome-sign-up{
+    transform: translateX(-100%);
+}
+
+#error {
+    text-align: center;
+    margin-top: 1rem;
+    color: #f87171;
+    font-size: 0.95rem;
+}
+
+.btn-12,
+.btn-12 *,
+.btn-12 :after,
+.btn-12 :before,
+.btn-12:after,
+.btn-12:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+.btn-12 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #3AB397;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.btn-12:disabled {
+  cursor: default;
+}
+
+.btn-12:-moz-focusring {
+  outline: auto;
+}
+
+.btn-12 svg {
+  display: block;
+  vertical-align: middle;
+}
+
+.btn-12 [hidden] {
+  display: none;
+}
+
+.btn-12 {
+  border-radius: 99rem;
+  border-width: 2px;
+  overflow: hidden;
+  padding: 0.8rem 3rem;
+  position: relative;
+}
+
+.btn-12 span {
+  mix-blend-mode: difference;
+  color: #3AB397;
+  
+}
+
+.btn-12:after,
+.btn-12:before {
+  background: linear-gradient(
+    90deg,
+    #fff 25%,
+    transparent 0,
+    transparent 50%,
+    #fff 0,
+    #fff 75%,
+    transparent 0
+  );
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: translateY(var(--progress, 100%));
+  transition: transform 0.2s ease;
+  color: #000;
+}
+
+.btn-12:after {
+  --progress: -100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 25%,
+    #fff 0,
+    #fff 50%,
+    transparent 0,
+    transparent 75%,
+    #fff 0
+  );
+  color: black;
+  z-index: -1;
+}
+
+.btn-12:hover:after,
+.btn-12:hover:before {
+  --progress: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn-12 {
+  color: black; /* letras blancas por defecto */
+  position: relative;
+  z-index: 1; /* asegurar que el texto esté por encima del fondo */
+}
+
+.btn-12 span {
+  position: relative;
+  z-index: 2; /* para que el texto quede arriba del efecto */
+  transition: color 0.3s ease;
+}
+
+/* Cuando se active el efecto del hover */
+.btn-12:hover span {
+  color: white;
+}
+
+/* From Uiverse.io by KINGFRESS */ 
+.button {
+  font-weight: bold;
+  color: white;
+  border-radius: 2rem;
+  cursor: pointer;
+  width: 180px;
+  height: 50px;
+  border: none;
+  background-color: #3AB397;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding-top: 15px;
+}
+
+.button .span-mother {
+  display: flex;
+  overflow: hidden;
+}
+
+.button:hover .span-mother {
+  position: absolute;
+}
+
+.button:hover .span-mother span {
+  transform: translateY(1.2em);
+}
+
+.button .span-mother span:nth-child(1) {
+  transition: 0.2s;
+}
+
+.button .span-mother span:nth-child(2) {
+  transition: 0.3s;
+}
+
+.button .span-mother span:nth-child(3) {
+  transition: 0.4s;
+}
+
+.button .span-mother span:nth-child(4) {
+  transition: 0.5s;
+}
+
+.button .span-mother span:nth-child(5) {
+  transition: 0.6s;
+}
+
+.button .span-mother span:nth-child(6) {
+  transition: 0.7s;
+}
+.button .span-mother span:nth-child(7) {
+  transition: 0.8s;
+}
+.button .span-mother span:nth-child(8) {
+  transition: 0.7s;
+}
+.button .span-mother span:nth-child(9) {
+  transition: 0.6s;
+}
+.button .span-mother span:nth-child(10) {
+  transition: 0.5s;
+}
+.button .span-mother span:nth-child(11) {
+  transition: 0.4s;
+}
+.button .span-mother span:nth-child(12) {
+  transition: 0.3s;
+}
+.button .span-mother span:nth-child(13) {
+  transition: 0.2s;
+}
+.button .span-mother span:nth-child(14) {
+  transition: 0.1s;
+}
+
+.button .span-mother2 {
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+}
+
+.button .span-mother2 span {
+  transform: translateY(-1.2em);
+}
+
+.button:hover .span-mother2 span {
+  transform: translateY(0);
+}
+
+.button .span-mother2 span {
+  transition: 0.2s;
+}
+
+.button .span-mother2 span:nth-child(2) {
+  transition: 0.3s;
+}
+
+.button .span-mother2 span:nth-child(3) {
+  transition: 0.4s;
+}
+
+.button .span-mother2 span:nth-child(4) {
+  transition: 0.5s;
+}
+
+.button .span-mother2 span:nth-child(5) {
+  transition: 0.6s;
+}
+
+.button .span-mother2 span:nth-child(6) {
+  transition: 0.7s;
+}
+.button .span-mother2 span:nth-child(7) {
+  transition: 0.7s;
+}
+.button .span-mother2 span:nth-child(8) {
+  transition: 0.6s;
+}
+.button .span-mother2 span:nth-child(9) {
+  transition: 0.5s;
+}
+.button .span-mother2 span:nth-child(10) {
+  transition: 0.4s;
+}
+.button .span-mother2 span:nth-child(11) {
+  transition: 0.3s;
+}
+.button .span-mother2 span:nth-child(12) {
+  transition: 0.2s;
+}
+.button .span-mother2 span:nth-child(13) {
+  transition: 0.1s;
+}
+.button .span-mother2 span:nth-child(14) {
+  transition: 0.8s;
+}
+
+/* From Uiverse.io by alexruix */ 
+.input-group {
+ position: relative;
+}
+
+.input {
+ border: solid 1.5px #9e9e9e;
+ border-radius: 1rem;
+ background: none;
+ padding: 1rem;
+ font-size: 1rem;
+ color: #000;
+ transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+ width: 300px;
+}
+
+.user-label {
+ position: absolute;
+ left: 15px;
+ color: #e8e8e8;
+ pointer-events: none;
+ transform: translateY(1rem);
+ transition: 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.input:focus, input:valid {
+ outline: none;
+ border: 1.5px solid #3AB397;
+}
+
+.input:focus ~ label, input:valid ~ label {
+ transform: translateY(-50%) scale(0.8);
+ background-color: white;
+ padding: 0 .2em;
+ color: black;
+}

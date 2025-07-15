@@ -5,8 +5,11 @@ from django.contrib import messages
 from proyecto_ips_app.models import * 
 from proyecto_ips_app.forms import *
 
+
+# @login_required
 def home(request):
     return render(request, 'home.html')
+    
 
 def inicio(request):
     tipo_usuario = None
@@ -30,7 +33,7 @@ def login_usuario(request):
         password_recibido = request.POST.get('password')
         
         if not username_recibido or not password_recibido:
-            return render(request, 'usuario/login.html', {'mensaje_error': 'Por favor, complete todos los campos.'})
+            return render(request, 'usuario/index.html', {'mensaje_error': 'Por favor, complete todos los campos.'})
         
         usuario = authenticate(request, username=username_recibido, password=password_recibido)
         
@@ -48,10 +51,12 @@ def login_usuario(request):
                 messages.error(request, 'El usuario no tiene un rol válido asignado.')
                 return redirect('home')
                 
-        return render(request, 'usuario/login.html', {'mensaje_error': 'Credenciales incorrectas, intente de nuevo.'})
+        return render(request, 'usuario/index.html', {'mensaje_error': 'Credenciales incorrectas, intente de nuevo.'})
 
-    return render(request, 'usuario/login.html')
+    return render(request, 'usuario/index.html')
 
 def logout_usuario(request):
     logout(request)
-    return redirect('home')
+    return redirect('login_usuario')
+
+# def logan()

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="edicion">
+  <h2>Agendar una Cita</h2>
+
+  <!-- Mensajes de éxito o error -->
+  {% for message in messages %}
+    {% if 'error' in message.tags %}
+      <div style="color: red;">{{ message }}</div>
+    {% elif 'warning' in message.tags %}
+      <div style="color: orange;">{{ message }}</div>
+    {% else %}
+      <div style="color: green;">{{ message }}</div>
+    {% endif %}
+  {% endfor %}
+
+  <!-- Formulario para seleccionar médico -->
+  <form method="get">
+    <label for="medico">Selecciona un médico:</label>
+    <select name="medico" id="medico" onchange="this.form.submit()">
+      <option value="">-- Elige un médico --</option>
+      {% for medico in medicos %}
+        <option value="{{ medico.id }}" {% if medico.id|stringformat:"s" == medico_id %}selected{% endif %}>
+          {{ medico }}
+        </option>
+      {% endfor %}
+      </select>
+      <!-- Mostrar lugar de atención si está disponible -->
+      {% if lugar_atencion %}
+        <div style="margin-top: 1rem;">
+          <strong>Lugar de atención:</strong> {{ lugar_atencion }}
+        </div>
+      {% endif %}
+
+  
+
+
+  </form>
+
+  <!-- Calendario de fechas disponibles -->
+  {% if fechas_disponibles %}
+    <div style="display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem;">
+
+      <!-- Calendario interactivo -->
+      <div>
+        <h3>Fechas disponibles</h3>
+        <form method="get">
+          <input type="hidden" name="medico" value="{{ medico_id }}">
+          <label for="fecha">Selecciona una fecha:</label>
+          <input
+            type="text"
+            name="fecha"
+            id="fecha"
+            value="{{ fecha_seleccionada }}"
+            onchange="this.form.submit()"
+            placeholder="Haz clic para elegir una fecha"
+          >
+        </form>
+      </div>
+
+      <!-- Tabla de horas disponibles -->
+<div>
+  {% if citas_disponibles %}
+    <h3>Horas disponibles para {{ fecha_seleccionada }}</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for hora in citas_disponibles %}
+          <tr>
+            <td>{{ hora|time:"g:i" }}{% if hora.hour < 12 %} a.m.{% else %} p.m.{% endif %}</td>
+            <td>
+              <form method="post" action="{% url 'crear_cita' %}">
+                {% csrf_token %}
+                <input type="hidden" name="medico_id" value="{{ medico_id }}">
+                <input type="hidden" name="fecha" value="{{ fecha_seleccionada }}">
+                <input type="hidden" name="hora" value="{{ hora|time:'H:i' }}">
+                <input type="hidden" name="lugar_atencion" value="{{ lugar_atencion }}">
+
+                {% if request.user.rol == 'AUX' %}
+                  <label for="paciente_id">Paciente:</label>
+                  <select name="paciente_id" id="paciente_id" required>
+                    <option value="">--Seleccione un paciente--</option>
+                    {% for paciente in pacientes %}
+                      <option value="{{ paciente.id }}">{{ paciente.first_name }} {{ paciente.last_name }}</option>
+                    {% endfor %}
+                  </select>
+                {% endif %}
+
+                <button type="submit">Solicitar</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% elif fecha_seleccionada %}
+    <p>No hay horas disponibles para este día.</p>
+  {% endif %}
+</div>
+
+
+    </div>
+  {% endif %}
+</div>
+
+<!-- === Flatpickr === -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  flatpickr("#fecha", {
+    dateFormat: "Y-m-d",
+    enable: {{ fechas_json|safe }},
+    minDate: "{{ fechas_disponibles|first }}",
+    maxDate: "{{ fechas_disponibles|last }}"
+  });
+</script>
+{% endblock %} 

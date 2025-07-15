@@ -23,7 +23,6 @@ class PacienteFormulario(forms.ModelForm):
             'eps',
             'tipo_regimen',
             'ocupacion',
-            'grupo_ingresos',
             'password', 
             
         ]

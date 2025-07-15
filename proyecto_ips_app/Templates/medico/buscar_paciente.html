@@ -7,25 +7,22 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="edicion">
     <h1>Buscar paciente</h1>
+
     {% if messages %}
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
     {% endif %}
 
-    <form class="busqueda_" method="GET" action="{% url 'listar_pacientes_filtrados' %}"> <!--Método GET recomendado para solicitar datos del servidor-->
-        <!--GET a diferencia de POST no modifica datos en el servidor y no necesita un token-->
+    <form class="busqueda_" method="GET" action="{% url 'listar_pacientes_filtrados' %}">
         <select name="opciones" id="ss">
             <option value="first_name">Nombre</option>
             <option value="documento">Número de documento</option>
         </select>
         <input type="text" name="consultaSQL" value="{{ request.GET.consultaSQL }}" placeholder="Nombre del paciente a buscar:">
         <button type="submit">Buscar pacientes</button>
-
-    
-
     </form>
 
     <table>
@@ -36,25 +33,25 @@
                 <th>Apellido</th>
                 <th>Correo</th>
                 <th>Fecha de Nacimiento</th>
-                <th>Telefono</th>
+                <th>Teléfono</th>
                 <th>Ciudad</th>
-                <th>Direccion</th>
+                <th>Dirección</th>
                 <th>EPS</th>
-                <th>Tipo de Regimen</th>
+                <th>Tipo de Régimen</th>
                 <th>Imagen</th>
-                <th>Ocupacion</th>
+                <th>Ocupación</th>
                 <th>Editar</th>
             </tr>
         </thead>
-                <tbody>
-                    {% if pacientes is not None %}
-                        {% if pacientes %}
-                            {% for paciente in pacientes %}
+        <tbody>
+            {% if pacientes is not None %}
+                {% if pacientes %}
+                    {% for paciente in pacientes %}
                     <tr>
                         <td>{{ paciente.tipo_doc }} {{ paciente.documento }}</td>
                         <td>{{ paciente.first_name }}</td>
                         <td>{{ paciente.last_name }}</td>
-                        <td>{{ paciente.email  }}</td>
+                        <td>{{ paciente.email }}</td>
                         <td>{{ paciente.fecha_nacimiento }}</td>
                         <td>{{ paciente.telefono }}</td>
                         <td>{{ paciente.ciudad }}</td>
@@ -63,20 +60,25 @@
                         <td>{{ paciente.tipo_regimen }}</td>
                         <td>
                             {% if paciente.imagen %}
-                            <img src="{{ paciente.imagen.url }}" alt="Imagen {{ paciente.first_name }}" width="150">
+                                <img src="{{ paciente.imagen.url }}" alt="Imagen {{ paciente.first_name }}" width="150">
                             {% else %}
-                            <img src="{% static 'img/default_user.png' %}" alt="Imagen del paciente" width="150"> 
+                                <img src="{% static 'img/default_user.png' %}" alt="Imagen del paciente" width="150">
                             {% endif %}
                         </td>
                         <td>{{ paciente.ocupacion }}</td>
                         <td>
                             <a href="{% url 'detallar_paciente' paciente.id %}">Información Completa</a>
-                            <a href="{% url 'eliminar_paciente' paciente.id %}" onclick="return confirm('¿Realmente desea eliminar este médico?')">Eliminar</a>
+                            <a href="{% url 'eliminar_paciente' paciente.id %}" onclick="return confirm('¿Realmente desea eliminar este paciente?')">Eliminar</a>
                         </td>
                     </tr>
-                            {% endfor %}   
-                        {% endif %}
-                    {% else %}
-                        <p>No se encontraron pacientes con ese nombre.</p>
-                    {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <tr><td colspan="13">No se encontraron pacientes con ese criterio.</td></tr>
+                {% endif %}
+            {% else %}
+                <tr><td colspan="13">Realice una búsqueda para mostrar resultados.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

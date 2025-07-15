@@ -7,17 +7,19 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="edicion">
     <h1>Crear Estado Cita</h1>
+
     {% if messages %}
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
     {% endif %}
-    
+
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-    <button>Guardar Estado Cita</button>
-    
-{% endblock %}     
+        <button type="submit">Guardar Estado Cita</button>
+    </form>
+</div>
+{% endblock %}

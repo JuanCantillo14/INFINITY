@@ -7,13 +7,15 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="edicion">
     <h1>Listas Estado Cita</h1>
+
     {% if messages %}
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
     {% endif %}
+
     <table>
         <thead>
             <tr>
@@ -24,18 +26,19 @@
         </thead>
         <tbody>
             {% if estado_citas %}
-            {% for estado_cita in estado_citas %}
-            <tr>
-                <td>{{ estado_cita.nombre_estado }}</td>
-                <td>{{ estado_cita.descripcion }}</td>
-                <td>
-                    <a href="{% url 'eliminar_estado_cita' estado_cita.id %}" onclick="return confirm('¿Realmente desea eliminar este estado de cita?')">Eliminar</a>
-                </td>
-            </tr>
-            {% endfor %}
+                {% for estado_cita in estado_citas %}
+                <tr>
+                    <td>{{ estado_cita.nombre_estado }}</td>
+                    <td>{{ estado_cita.descripcion }}</td>
+                    <td>
+                        <a href="{% url 'eliminar_estado_cita' estado_cita.id %}" onclick="return confirm('¿Realmente desea eliminar este estado de cita?')">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
             {% else %}
-                <p>No hay datos para mostrar</p>
+                <tr><td colspan="3">No hay datos para mostrar</td></tr>
             {% endif %}
         </tbody>
     </table>
+</div>
 {% endblock %}

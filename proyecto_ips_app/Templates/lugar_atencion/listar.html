@@ -7,13 +7,15 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="edicion">
     <h1>Listas Lugar de Atención</h1>
+
     {% if messages %}
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
     {% endif %}
+
     <table>
         <thead>
             <tr>
@@ -26,20 +28,21 @@
         </thead>
         <tbody>
             {% if lugar_atenciones %}
-            {% for lugar_atencion in lugar_atenciones  %}
-            <tr>
-                <td>{{ lugar_atencion.nombre_lugar }}</td>
-                <td>{{ lugar_atencion.direccion_lugar }}</td>
-                <td>{{ lugar_atencion.departamento }}</td>
-                <td>{{ lugar_atencion.ciudad }}</td>
-                <td>
-                    <a href="{% url 'eliminar_lugar_atencion' lugar_atencion.id %}" onclick="return confirm('¿Realmente desea eliminar este Lugar de Atención?')">Eliminar</a>
-                </td>
-            </tr>
-            {% endfor %}
+                {% for lugar_atencion in lugar_atenciones %}
+                <tr>
+                    <td>{{ lugar_atencion.nombre_lugar }}</td>
+                    <td>{{ lugar_atencion.direccion_lugar }}</td>
+                    <td>{{ lugar_atencion.departamento }}</td>
+                    <td>{{ lugar_atencion.ciudad }}</td>
+                    <td>
+                        <a href="{% url 'eliminar_lugar_atencion' lugar_atencion.id %}" onclick="return confirm('¿Realmente desea eliminar este Lugar de Atención?')">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
             {% else %}
-                <p>No hay datos para mostrar</p>
+                <tr><td colspan="5">No hay datos para mostrar</td></tr>
             {% endif %}
         </tbody>
     </table>
+</div>
 {% endblock %}

@@ -22,7 +22,6 @@ class MedicoFormulario(forms.ModelForm):
             'imagen',
             'tarjeta_profesional',
             'especializacion',
-            'consultorio',
             'password', 
         ]
         widgets = {

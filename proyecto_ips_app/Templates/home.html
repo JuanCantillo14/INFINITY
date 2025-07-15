@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block title %}
@@ -7,49 +6,32 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="inicio">
     <div id="menu_principal">
-        <h1>Bienvenido a INFINITY</h1><br>
-        <p>Aliados para proteger la salud de nuestros usuarios</p><br>
-        <h4>OPCIONES A UN CLIC</h4><br>
-        <p>Realiza fácilmente tus procesos con nuestra EPS. ¡Conoce aquí las soluciones virtuales que tenemos especialmente para ti!
-        </p><br>
-        <p>Organiza pacientes, médicos, citas y personal de forma ágil, segura y eficiente.</p>
+        <h1>Bienvenido a INFINITY</h1>
+        <p>Aliados para proteger la salud de nuestros usuarios</p>
+        <h4>OPCIONES A UN CLIC</h4>
+        <p>
+            Realiza fácilmente tus procesos con nuestra EPS. ¡Conoce aquí las soluciones virtuales que tenemos especialmente para ti!
+        </p>
+        <p>
+            Organiza pacientes, médicos, citas y personal de forma ágil, segura y eficiente.
+        </p>
     </div>
 
-    <div>
-        <img id="banner" src="{% static 'img/banner-como-reclamar-los-medicamentos-2024.jpg' %}" alt="">
-    </div>
     <section id="submenu">
         <div class="contenedor-imagen">
-            <img class="imagen" src="{% static 'img/1.jpg' %}" alt="">
-            <div class="super"><h1>¡Puedes aprender desde cualquier lugar!</h1><br>
-                Esta plataforma es virtual y te permite aprender desde tu casa, tu lugar de trabajo o la casa de tus familiares. Tienes acceso a toda la información sin tener que desplazarte.</div>
-        </div>
-        <div class="contenedor-imagen">
-            <img class="imagen" src="{% static 'img/2.jpg' %}" alt="">
-            <div class="super"><h1>Conoce
-                la plataforma
-                educativa de
-                EPS SURA</h1><br>
-                
-                Te entregamos contenidos y experiencias de
-                aprendizaje para cuidar tu salud y
-                la de tu familia</div>
-        </div>
-        <div class="contenedor-imagen">
-            <img  class="imagen" src="{% static 'img/3.jpg' %}" alt="">
             <div class="super">
-                <h1>Trámites administrativos</h1><br>
-                Te invitamos a autogestionar algunos procesos a tu alcance, desde cualquier lugar y sin desplazamientos.</div>
+                <h1>¡Puedes aprender desde cualquier lugar!</h1>
+                <p>
+                    Esta plataforma es virtual y te permite aprender desde tu casa, tu lugar de trabajo o la casa de tus familiares.
+                    Tienes acceso a toda la información sin tener que desplazarte.
+                </p>
+            </div>
         </div>
     </section>
-        <div class="footer_principal">
-            <p>&copy; 2025 INFINITY. - Todos los derechos reservados.</p>
-            <p>NIT: 900.123.456-7 | Dirección: Calle 123 #45-67, Ciudad, País | Tel: (123) 456 7890</p>
-            <p>Horarios de atención: Lunes a Viernes de 7:00 a.m. a 6:00 p.m. | Sábados de 8:00 a.m. a 1:00 p.m.</p>
-            <p>Este sitio web tiene fines informativos. En caso de emergencia, comuníquese con su línea de atención médica local.</p>
-        </div>
-   
-
+    
+</div>
 {% endblock %}
+
+

@@ -113,4 +113,7 @@ class Usuario(AbstractUser):
         related_name="usuario_permisos_set",  # Cambia el nombre para evitar conflictos
         blank=True
     )
+    def user_directory_path(instance, filename):
+        return f'usuarios/{instance.username}/{filename}'
+
     

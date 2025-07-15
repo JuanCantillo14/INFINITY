@@ -10,7 +10,6 @@ router.register(r'medicos',MedicoViewSet,basename='medico')
 router.register(r'pacientes',PacienteViewSet,basename='paciente')
 router.register(r'usuarios',UsuarioViewSet,basename='usuario')
 router.register(r'especialidades',EspecialidadViewSet,basename='especialidad')
-router.register(r'consultorios',ConsultorioViewSet,basename='consultorio')
 
 urlpatterns=[
     path('',include(router.urls))

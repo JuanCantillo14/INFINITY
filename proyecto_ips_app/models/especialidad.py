@@ -8,6 +8,6 @@ class Especialidad(models.Model):
         db_table='especialidad'
     
     def __str__(self):
-        return self.nombre_especialidad
+        return f"{self.nombre_especialidad}"
     
   

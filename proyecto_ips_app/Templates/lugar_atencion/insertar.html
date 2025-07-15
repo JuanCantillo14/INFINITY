@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="edicion">
     <h1>Crear Lugar de Atención</h1>
 
     {% if messages %}
@@ -33,27 +33,27 @@
 
         <button type="submit">Guardar Lugar de Atención</button>
     </form>
+</div>
 
-    <script>
-        document.getElementById('id_departamento').addEventListener('change', function () {
-            const departamentoId = this.value;
-            const url = "{% url 'ajax_cargar_ciudades' %}?departamento_id=" + departamentoId;
-            const ciudadSelect = document.getElementById('id_ciudad');
+<script>
+    document.getElementById('id_departamento').addEventListener('change', function () {
+        const departamentoId = this.value;
+        const url = "{% url 'ajax_cargar_ciudades' %}?departamento_id=" + departamentoId;
+        const ciudadSelect = document.getElementById('id_ciudad');
 
-            ciudadSelect.innerHTML = '<option value="">Cargando...</option>';
+        ciudadSelect.innerHTML = '<option value="">Cargando...</option>';
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    ciudadSelect.innerHTML = '<option value="">Seleccione una ciudad</option>';
-                    data.forEach(ciudad => {
-                        const option = document.createElement('option');
-                        option.value = ciudad.codigo_municipio;
-                        option.textContent = ciudad.nombre_ciudad;
-                        ciudadSelect.appendChild(option);
-                    });
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                ciudadSelect.innerHTML = '<option value="">Seleccione una ciudad</option>';
+                data.forEach(ciudad => {
+                    const option = document.createElement('option');
+                    option.value = ciudad.codigo_municipio;
+                    option.textContent = ciudad.nombre_ciudad;
+                    ciudadSelect.appendChild(option);
                 });
-        });
-    </script>
-    
+            });
+    });
+</script>
 {% endblock %}

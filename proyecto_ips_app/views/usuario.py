@@ -41,9 +41,9 @@ def actualizar_usuario(request):
             if 'imagen' in request.FILES:
                 usuario.imagen = request.FILES['imagen']
             
-            # Si el usuario dejó el campo de imagen en blanco, eliminar la imagen
-            elif not formulario.cleaned_data.get('imagen'):
-                usuario.imagen = None  
+            # # Si el usuario dejó el campo de imagen en blanco, eliminar la imagen
+            # elif not formulario.cleaned_data.get('imagen'):
+            #     usuario.imagen = None  
 
             usuario.save()  # Ahora sí guardamos todo en la BD
             update_session_auth_hash(request, usuario)  # Mantiene la sesión activa después de actualizar la contraseña            
@@ -84,9 +84,9 @@ def eliminar_usuario(request, usuario_id):
 @login_required
 def ver_perfil_usuario(request):
     usuario = request.user.id  # Ver página el perfil del usuario
-    return render(request, 'usuario/detallar.html', {'usuario': usuario})
+    return render(request, 'usuario/mi_perfil.html', {'usuario': usuario})
 
 @login_required
-def detallar_usuario(request):
+def mi_perfil_usuario(request):
     usuario = request.user.id  # Ver los detalles del usuario
-    return render(request, 'usuario/detallar.html', {'usuario': usuario })
+    return render(request, 'usuario/mi_perfil.html', {'usuario': usuario })

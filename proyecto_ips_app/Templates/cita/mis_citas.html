@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if citas %}
+<div class="edicion">
+  <h2>Mis Citas Médicas</h2>
+    <table border="1" cellpadding="5">
+    <thead>
+      <tr>
+        <th>Profesional</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Lugar de Atención</th>
+        <th>Estado</th>
+        <th>Cancelar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cita in citas %}
+  <tr>
+    <td>{{ cita.medico.get_full_name }}</td>
+    <td>{{ cita.fecha }}</td>
+    <td>{{ cita.hora }}</td>
+    <td>{{ cita.lugar_atencion }}</td>
+    <td>{{ cita.estado }}</td>
+    <td>
+      {% if cita.estado != 'CANCELADA' %}
+        <form action="{% url 'cancelar_cita' cita.id %}" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" onclick="return confirm('¿Estás seguro de cancelar esta cita?')">
+            Cancelar
+          </button>
+        </form>
+      {% else %}
+        <em>Cancelada</em>
+      {% endif %}
+    </td>
+  </tr>
+{% endfor %}
+    </tbody>
+  </table>
+</div>
+  
+{% else %}
+  <p>No tienes citas agendadas.</p>
+{% endif %}
+{% endblock %}

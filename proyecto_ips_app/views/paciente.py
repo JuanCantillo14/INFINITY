@@ -5,6 +5,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.db.models import Q
 from proyecto_ips_app.models import * 
 from proyecto_ips_app.forms import *
+from proyecto_ips_app.models import Cita
 
 def crear_paciente(request):
     if request.method=='POST':
@@ -59,7 +60,7 @@ def mis_citas_medicas(request):
     # Como Paciente hereda de Usuario, el request.user ES un Paciente
     paciente = request.user  # Aquí no necesitas buscar en el modelo Paciente
 
-    citas = CitaMedica.objects.filter(paciente=paciente).order_by('dia', 'horario')
+    citas = Cita.objects.filter(paciente=paciente).order_by('dia', 'horario')
 
     if not citas:
         messages.info(request, "No tienes citas médicas asignadas.")
